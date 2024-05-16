@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.12"
 pyrosm = "^0.6.2"
 matplotlib = "^3.8.4"
+openeo = "^0.29.0"
 
 
 [tool.poetry.group.dev.dependencies]
