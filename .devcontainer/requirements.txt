@@ -1,0 +1,13 @@
+numpy
+pandas
+jupyter
+matplotlib
+pyrosm
+openeo
+rasterio
+torch --index-url https://download.pytorch.org/whl/cu118
+# torchvision
+# torchaudio
+geopandas
+
+# torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118

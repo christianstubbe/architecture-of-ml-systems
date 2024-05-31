@@ -1,7 +1,0 @@
-numpy
-pandas
-jupyter
-matplotlib
-pyrosm
-openeo
-rasterio
