@@ -10,6 +10,7 @@ python = "^3.12"
 pyrosm = "^0.6.2"
 matplotlib = "^3.8.4"
 openeo = "^0.29.0"
+utils = "^1.0.2"
 
 
 [tool.poetry.group.dev.dependencies]
