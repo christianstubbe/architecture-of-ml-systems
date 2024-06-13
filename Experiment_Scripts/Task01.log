@@ -1,0 +1,17 @@
+2024-06-13 22:59:53,014 - Task01 - INFO - Logging start
+2024-06-13 22:59:53,015 - Task01 - INFO - Storing available cities in pyrosm
+2024-06-13 22:59:53,015 - Task01 - INFO - Available cities stored in data/available_cities.json
+2024-06-13 22:59:53,015 - Task01 - INFO - Creating directories for each city
+2024-06-13 22:59:53,015 - Task01 - INFO - Creating Directory: data/Aachen
+2024-06-13 22:59:53,015 - Task01 - INFO - Creating Directory: data/Berlin
+2024-06-13 22:59:53,015 - Task01 - INFO - Creating Directory: data/CapeTown
+2024-06-13 22:59:53,015 - Task01 - INFO - Creating Directory: data/Hamburg
+2024-06-13 22:59:53,016 - Task01 - INFO - Creating Directory: data/Johannesburg
+2024-06-13 22:59:53,016 - Task01 - INFO - Creating Directory: data/London
+2024-06-13 22:59:53,016 - Task01 - INFO - Creating Directory: data/Montreal
+2024-06-13 22:59:53,016 - Task01 - INFO - Creating Directory: data/Paris
+2024-06-13 22:59:53,016 - Task01 - INFO - Creating Directory: data/Seoul
+2024-06-13 22:59:53,016 - Task01 - INFO - Creating Directory: data/Singapore
+2024-06-13 22:59:53,016 - Task01 - INFO - Creating Directory: data/Sydney
+2024-06-13 22:59:53,016 - Task01 - INFO - Directories created
+2024-06-13 22:59:57,546 - Task01 - INFO - Data for Aachen downloaded to data/Aachen

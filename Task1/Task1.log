@@ -1,0 +1,108 @@
+2024-06-13 22:16:03,345 - Task1 - INFO - Logging start
+2024-06-13 22:16:03,345 - Task1 - INFO - Storing available cities in pyrosm
+2024-06-13 22:16:03,345 - Task1 - INFO - Available cities stored in data/available_cities.json
+2024-06-13 22:16:03,345 - Task1 - INFO - Creating directories for each city
+2024-06-13 22:16:03,345 - Task1 - INFO - Creating Directory: data/Aachen
+2024-06-13 22:16:03,345 - Task1 - INFO - Creating Directory: data/Berlin
+2024-06-13 22:16:03,345 - Task1 - INFO - Creating Directory: data/CapeTown
+2024-06-13 22:16:03,345 - Task1 - INFO - Creating Directory: data/Hamburg
+2024-06-13 22:16:03,345 - Task1 - INFO - Creating Directory: data/Johannesburg
+2024-06-13 22:16:03,345 - Task1 - INFO - Creating Directory: data/London
+2024-06-13 22:16:03,345 - Task1 - INFO - Creating Directory: data/Montreal
+2024-06-13 22:16:03,345 - Task1 - INFO - Creating Directory: data/Paris
+2024-06-13 22:16:03,345 - Task1 - INFO - Creating Directory: data/Seoul
+2024-06-13 22:16:03,345 - Task1 - INFO - Creating Directory: data/Singapore
+2024-06-13 22:16:03,345 - Task1 - INFO - Creating Directory: data/Sydney
+2024-06-13 22:16:03,345 - Task1 - INFO - Directories created
+2024-06-13 22:16:03,346 - Task1 - INFO - Data for Aachen downloaded to data/Aachen
+2024-06-13 22:16:03,346 - Task1 - INFO - Using local data for Aachen
+2024-06-13 22:16:03,346 - Task1 - INFO - Data for Berlin downloaded to data/Berlin
+2024-06-13 22:16:03,346 - Task1 - INFO - Using local data for Berlin
+2024-06-13 22:16:03,346 - Task1 - INFO - Data for CapeTown downloaded to data/CapeTown
+2024-06-13 22:16:03,346 - Task1 - INFO - Using local data for CapeTown
+2024-06-13 22:16:03,346 - Task1 - INFO - Data for Hamburg downloaded to data/Hamburg
+2024-06-13 22:16:03,346 - Task1 - INFO - Using local data for Hamburg
+2024-06-13 22:16:03,346 - Task1 - INFO - Data for Johannesburg downloaded to data/Johannesburg
+2024-06-13 22:16:03,346 - Task1 - INFO - Using local data for Johannesburg
+2024-06-13 22:16:03,346 - Task1 - INFO - Data for London downloaded to data/London
+2024-06-13 22:16:03,347 - Task1 - INFO - Using local data for London
+2024-06-13 22:16:03,347 - Task1 - INFO - Data for Montreal downloaded to data/Montreal
+2024-06-13 22:16:03,347 - Task1 - INFO - Using local data for Montreal
+2024-06-13 22:16:03,347 - Task1 - INFO - Data for Paris downloaded to data/Paris
+2024-06-13 22:16:03,347 - Task1 - INFO - Using local data for Paris
+2024-06-13 22:16:03,347 - Task1 - INFO - Data for Seoul downloaded to data/Seoul
+2024-06-13 22:16:03,347 - Task1 - INFO - Using local data for Seoul
+2024-06-13 22:16:03,347 - Task1 - INFO - Data for Singapore downloaded to data/Singapore
+2024-06-13 22:16:03,347 - Task1 - INFO - Using local data for Singapore
+2024-06-13 22:16:03,347 - Task1 - INFO - Data for Sydney downloaded to data/Sydney
+2024-06-13 22:16:03,347 - Task1 - INFO - Using local data for Sydney
+2024-06-13 22:16:03,347 - Task1 - INFO - Using local data for BerlinTest
+2024-06-13 22:16:03,347 - Task1 - INFO - Connecting to openEO backend...
+2024-06-13 22:16:04,112 - Task1 - INFO - CONNECTED
+2024-06-13 22:16:13,167 - Task1 - INFO - Current, failed and finished jobs:
+2024-06-13 22:16:13,167 - Task1 - INFO - 0 j-24061372587d4cfab3cf74f361de3998 finished
+2024-06-13 22:16:13,167 - Task1 - INFO - 1 j-240613257a804ed18666cf928e53288c finished
+2024-06-13 22:16:13,167 - Task1 - INFO - 2 j-240613db505541ee81b709ea55f10668 finished
+2024-06-13 22:16:13,167 - Task1 - INFO - 3 j-24061353e5064c7d868843b519372fcb finished
+2024-06-13 22:16:13,168 - Task1 - INFO - 4 j-240613296c4b4e6a89d567e011ff9637 finished
+2024-06-13 22:16:13,168 - Task1 - INFO - 5 j-240613d4e34745a5bd159d7d17ef5b6b finished
+2024-06-13 22:16:13,168 - Task1 - INFO - 6 j-240613462ab84b1b8ba1b63f7e913c20 finished
+2024-06-13 22:16:13,168 - Task1 - INFO - 7 j-2406136fccb04e4c9df74d81d28a79a6 finished
+2024-06-13 22:16:13,168 - Task1 - INFO - 8 j-24061325786740158b97510abe1d58bd finished
+2024-06-13 22:16:13,168 - Task1 - INFO - 9 j-240613abc60a4d9399b82ef63ac40ed5 finished
+2024-06-13 22:16:13,168 - Task1 - INFO - 10 j-240613ff17564aa2bb5c812e0be9da7b finished
+2024-06-13 22:16:13,168 - Task1 - INFO - 11 j-2406134c81554c77b684174afa94d4e9 finished
+2024-06-13 22:16:13,168 - Task1 - INFO - Creating Processing Jobs
+2024-06-13 22:16:13,679 - Task1 - INFO - [{'created': '2024-06-13T17:01:13Z', 'id': 'j-24061372587d4cfab3cf74f361de3998', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T17:10:13Z'}, {'created': '2024-06-13T17:11:13Z', 'id': 'j-240613257a804ed18666cf928e53288c', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T17:19:06Z'}, {'created': '2024-06-13T17:20:23Z', 'id': 'j-240613db505541ee81b709ea55f10668', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T17:26:11Z'}, {'created': '2024-06-13T17:26:57Z', 'id': 'j-24061353e5064c7d868843b519372fcb', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T17:33:06Z'}, {'created': '2024-06-13T16:23:46Z', 'id': 'j-240613296c4b4e6a89d567e011ff9637', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T16:30:12Z'}, {'created': '2024-06-13T15:55:22Z', 'id': 'j-240613d4e34745a5bd159d7d17ef5b6b', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T16:02:10Z'}, {'created': '2024-06-13T16:03:06Z', 'id': 'j-240613462ab84b1b8ba1b63f7e913c20', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T16:12:14Z'}, {'created': '2024-06-13T16:12:57Z', 'id': 'j-2406136fccb04e4c9df74d81d28a79a6', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T16:23:13Z'}, {'created': '2024-06-13T16:31:34Z', 'id': 'j-24061325786740158b97510abe1d58bd', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T17:00:13Z'}, {'created': '2024-06-13T17:39:33Z', 'id': 'j-240613abc60a4d9399b82ef63ac40ed5', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T17:53:10Z'}, {'created': '2024-06-13T17:33:55Z', 'id': 'j-240613ff17564aa2bb5c812e0be9da7b', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T17:39:08Z'}, {'created': '2024-06-13T17:54:30Z', 'id': 'j-2406134c81554c77b684174afa94d4e9', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T17:59:17Z'}]
+2024-06-13 22:16:13,679 - Task1 - INFO - Processing Aachen
+2024-06-13 22:16:13,679 - Task1 - INFO - {'bounds': array([ 5.97486258, 50.66213608,  6.21810818, 50.8572464 ]), 'buildings_path': 'data/Aachen/buildings.geojson', 'bounds_path': 'data/Aachen/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-06-13 22:16:13,680 - Task1 - INFO - openEO.tif for Aachen already exists. USING LOCAL DATA.
+2024-06-13 22:16:13,680 - Task1 - INFO - Processing Berlin
+2024-06-13 22:16:13,680 - Task1 - INFO - {'bounds': array([13.08834457, 52.33824539, 13.76116085, 52.67551041]), 'buildings_path': 'data/Berlin/buildings.geojson', 'bounds_path': 'data/Berlin/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-06-13 22:16:13,681 - Task1 - INFO - openEO.tif for Berlin already exists. USING LOCAL DATA.
+2024-06-13 22:16:13,681 - Task1 - INFO - Processing CapeTown
+2024-06-13 22:16:13,681 - Task1 - INFO - {'bounds': array([ 18.30722046, -34.11995316,  18.7499733 , -33.78020096]), 'buildings_path': 'data/CapeTown/buildings.geojson', 'bounds_path': 'data/CapeTown/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-06-13 22:16:13,681 - Task1 - INFO - openEO.tif for CapeTown already exists. USING LOCAL DATA.
+2024-06-13 22:16:13,681 - Task1 - INFO - Processing Hamburg
+2024-06-13 22:16:13,681 - Task1 - INFO - {'bounds': array([ 9.73011589, 53.39511108, 10.32528019, 53.7394371 ]), 'buildings_path': 'data/Hamburg/buildings.geojson', 'bounds_path': 'data/Hamburg/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-06-13 22:16:13,682 - Task1 - INFO - openEO.tif for Hamburg already exists. USING LOCAL DATA.
+2024-06-13 22:16:13,682 - Task1 - INFO - Processing Johannesburg
+2024-06-13 22:16:13,682 - Task1 - INFO - {'bounds': array([ 27.72006989, -26.39994431,  28.46972084, -25.90001488]), 'buildings_path': 'data/Johannesburg/buildings.geojson', 'bounds_path': 'data/Johannesburg/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-06-13 22:16:13,682 - Task1 - INFO - openEO.tif for Johannesburg already exists. USING LOCAL DATA.
+2024-06-13 22:16:13,682 - Task1 - INFO - Processing London
+2024-06-13 22:16:13,682 - Task1 - INFO - {'bounds': array([-0.59997952, 51.28000259,  0.4199934 , 51.70000076]), 'buildings_path': 'data/London/buildings.geojson', 'bounds_path': 'data/London/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-06-13 22:16:13,682 - Task1 - INFO - openEO.tif for London already exists. USING LOCAL DATA.
+2024-06-13 22:16:13,683 - Task1 - INFO - Processing Montreal
+2024-06-13 22:16:13,683 - Task1 - INFO - {'bounds': array([-74.08990479,  45.30006409, -73.27013397,  45.74983978]), 'buildings_path': 'data/Montreal/buildings.geojson', 'bounds_path': 'data/Montreal/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-06-13 22:16:13,683 - Task1 - INFO - openEO.tif for Montreal already exists. USING LOCAL DATA.
+2024-06-13 22:16:13,683 - Task1 - INFO - Processing Paris
+2024-06-13 22:16:13,683 - Task1 - INFO - {'bounds': array([ 2.22412205, 48.81557465,  2.46976018, 48.90215683]), 'buildings_path': 'data/Paris/buildings.geojson', 'bounds_path': 'data/Paris/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-06-13 22:16:13,683 - Task1 - INFO - openEO.tif for Paris already exists. USING LOCAL DATA.
+2024-06-13 22:16:13,683 - Task1 - INFO - Processing Seoul
+2024-06-13 22:16:13,683 - Task1 - INFO - {'bounds': array([126.58013916,  37.35000992, 127.30995941,  37.71998215]), 'buildings_path': 'data/Seoul/buildings.geojson', 'bounds_path': 'data/Seoul/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-06-13 22:16:13,684 - Task1 - INFO - openEO.tif for Seoul already exists. USING LOCAL DATA.
+2024-06-13 22:16:13,684 - Task1 - INFO - Processing Singapore
+2024-06-13 22:16:13,684 - Task1 - INFO - {'bounds': array([103.60249329,   1.28047013, 103.97086862,   1.47875106]), 'buildings_path': 'data/Singapore/buildings.geojson', 'bounds_path': 'data/Singapore/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-06-13 22:16:13,684 - Task1 - INFO - openEO.tif for Singapore already exists. USING LOCAL DATA.
+2024-06-13 22:16:13,684 - Task1 - INFO - Processing Sydney
+2024-06-13 22:16:13,684 - Task1 - INFO - {'bounds': array([150.87641326, -34.05987167, 151.31747437, -33.68881007]), 'buildings_path': 'data/Sydney/buildings.geojson', 'bounds_path': 'data/Sydney/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-06-13 22:16:13,684 - Task1 - INFO - openEO.tif for Sydney already exists. USING LOCAL DATA.
+2024-06-13 22:16:13,684 - Task1 - INFO - Processing BerlinTest
+2024-06-13 22:16:13,684 - Task1 - INFO - {'bounds': [13.294333, 52.454927, 13.500205, 52.574409], 'buildings_path': 'data/BerlinTest/buildings.geojson', 'bounds_path': 'data/BerlinTest/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-06-13 22:16:13,684 - Task1 - INFO - openEO.tif for BerlinTest already exists. USING LOCAL DATA.
+2024-06-13 22:16:13,684 - Task1 - INFO - All Jobs finished
+2024-06-13 22:16:13,684 - Task1 - INFO - All Data downloaded
+2024-06-13 22:16:13,684 - Task1 - INFO - Moving on to the next step
+2024-06-13 22:16:13,684 - Task1 - INFO - Image creation of the Berlin images from the Exercise Sheet.
+2024-06-13 22:16:57,878 - Task1 - INFO - Creating Building Masks for all cities
+2024-06-13 22:16:57,878 - Task1 - INFO - Processing Aachen
+2024-06-13 22:17:48,167 - Task1 - INFO - Mask Shape: (2238, 1802)
+2024-06-13 22:17:48,168 - Task1 - INFO - Processing Berlin
+2024-06-13 22:21:47,569 - Task1 - INFO - Mask Shape: (3851, 4649)
+2024-06-13 22:21:47,570 - Task1 - INFO - Processing CapeTown
+2024-06-13 22:22:50,756 - Task1 - INFO - Mask Shape: (3868, 4184)
+2024-06-13 22:22:50,757 - Task1 - INFO - Processing Hamburg
+2024-06-13 22:25:18,463 - Task1 - INFO - Mask Shape: (3888, 3998)
+2024-06-13 22:25:18,463 - Task1 - INFO - Processing Johannesburg
+2024-06-13 22:25:35,926 - Task1 - INFO - Mask Shape: (5602, 7542)
+2024-06-13 22:25:35,927 - Task1 - INFO - Processing London
