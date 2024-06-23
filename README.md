@@ -14,4 +14,11 @@ pip install -r ./.devcontainer/requirements.txt
 ```
 
 
-# Sentinel Building Segmentation
+# Logging
+
+Logs for this pipepline are stored in ```logs.log```.
+
+
+# Requirements
+
+The connection to copernicus.eu requires a registration which must be done manually.
