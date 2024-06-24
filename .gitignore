@@ -1,3 +1,6 @@
 data/
 .DS_STORE
 .venv
+
+
+*.log

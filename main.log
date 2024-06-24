@@ -7382,3 +7382,18 @@
 2024-06-24 13:00:12,662 - root - INFO - delete_jobs - Deleteing job 14, j-240615ecf88d44f8b9be65904740d809, finished
 2024-06-24 13:00:26,497 - root - INFO - delete_jobs - Deleteing job 15, j-24062496a4b84bebbfa35c05df28850a, finished
 2024-06-24 13:00:30,274 - root - INFO - delete_jobs - Deleteing job 16, j-2406240e564d4a0a8a5d0674b32a4c62, running
+2024-06-24 14:59:47,236 - root - INFO - __init__ - Data directory already exists
+2024-06-24 14:59:47,245 - root - INFO - create_directory - Aachen: Directory available
+2024-06-24 14:59:47,247 - root - INFO - get_buildings - Aachen: Using local building data
+2024-06-24 15:00:04,401 - openeo.config - INFO - get_config - Loaded openEO client config from sources: []
+2024-06-24 15:00:07,283 - openeo.rest.connection - INFO - _get_oidc_provider - Found OIDC providers: ['CDSE']
+2024-06-24 15:00:07,284 - openeo.rest.connection - INFO - _get_oidc_provider - No OIDC provider given, but only one available: 'CDSE'. Using that one.
+2024-06-24 15:00:08,162 - openeo.rest.connection - INFO - _get_oidc_provider_and_client_info - Using default client_id 'sh-b1c3a958-52d4-40fe-a333-153595d1c71e' from OIDC provider 'CDSE' info.
+2024-06-24 15:00:08,164 - openeo.rest.connection - INFO - authenticate_oidc - Found refresh token: trying refresh token based authentication.
+2024-06-24 15:00:08,165 - openeo.rest.auth.oidc - INFO - _do_token_post_request - Doing 'refresh_token' token request 'https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token' with post data fields ['grant_type', 'client_id', 'refresh_token'] (client_id 'sh-b1c3a958-52d4-40fe-a333-153595d1c71e')
+2024-06-24 15:00:08,626 - openeo.rest.connection - INFO - _authenticate_oidc - Obtained tokens: ['access_token', 'id_token', 'refresh_token']
+2024-06-24 15:00:08,628 - openeo.rest.auth.config - INFO - set_refresh_token - Storing refresh token for issuer 'https://identity.dataspace.copernicus.eu/auth/realms/CDSE' (client 'sh-b1c3a958-52d4-40fe-a333-153595d1c71e')
+2024-06-24 15:00:08,633 - root - INFO - connect_to_openeo - Connected to openEO
+2024-06-24 15:00:08,635 - root - INFO - download_satellite_image - Current jobs:
+2024-06-24 15:00:16,454 - root - INFO - create_and_start_openeo_job - Frankfurt: Created openEO job
+2024-06-24 15:00:39,723 - root - INFO - create_and_start_openeo_job - Frankfurt: Started openEO job with ID: j-24062417bdaa44be90ebf4b2488aa2e1
