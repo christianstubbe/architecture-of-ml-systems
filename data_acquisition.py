@@ -1,18 +1,28 @@
+#basics
 import os
 import time
 import json
 import pickle
 import openeo
 import numpy as np
-import pyrosm as pyr
+
+# geography
 import geopandas as gpd
-import matplotlib.pyplot as plt
+import rasterio
+from rasterio.features import geometry_mask
+
+
+#download
+import pyrosm as pyr
 from openeo.rest import OpenEoApiError
 from openeo.processes import ProcessBuilder, if_, is_nan
 
-import rasterio
-import geopandas as gpd
-from rasterio.features import geometry_mask
+
+
+# plotting 
+import matplotlib.pyplot as plt
+import plotly.express as px
+import plotly.graph_objects as go
 
 
 
@@ -118,13 +128,22 @@ class DataHandler:
         return boundingbox
     
 
-    def get_satellite_image(self, city: str): 
+    def get_satellite_image(self, city: str, return_rasterio_dataset = False): 
         """
-        Get satellite images for a city. Use local data if available.
+        Get satellite images for a city. Use local data if available. Returns an Array with (H, W, C) shape
         """
         if os.path.exists(f"data/{city}/openEO.tif"):
             self.logger.info(f"{city}: Using local satellite image")
-            return rasterio.open(f"data/{city}/openEO.tif")
+            ds = rasterio.open(f"data/{city}/openEO.tif")
+            if return_rasterio_dataset:
+                return ds
+            
+            # Read all channels
+            sat_data = ds.read()
+
+            # Transpose to (H, W, C)
+            sat_data = np.transpose(sat_data, (1, 2, 0))
+            return sat_data
         else:
             self.download_satellite_image(city)
             return self.get_satellite_image(city)
@@ -264,7 +283,7 @@ class DataHandler:
             return rasterio.open(f"data/{city}/building_mask.tif").read(1)
 
         # Create new building mask 
-        satellite_image = self.get_satellite_image(city)
+        satellite_image = self.get_satellite_image(city, return_rasterio_dataset=True)
 
         # Get satellite image metadata
         transform = satellite_image.transform
@@ -305,8 +324,9 @@ class DataHandler:
              backend: str = "matplotlib",
              figure_size: tuple = (10, 10),
              brightness: int = 5,
-             image_path_out: str = "img/BerlinTest",
-             show_plot: bool = False
+             image_directory: str = "img/",
+             show_plot: bool = False,
+             slice_to_be_plotted = None
              ):
         """
         Plot the data for a city either with matplotlib or plotly.
@@ -318,51 +338,58 @@ class DataHandler:
             return np.clip((band - p2) * 255.0 / (p98 - p2), 0, 255).astype(np.uint8)
     
     
-        if backend != "matplotlib":
-            raise NotImplementedError("Only matplotlib is supported at the moment")
+        if backend != "plotly" and backend != "matplotlib":            
+            raise NotImplementedError("Only matplotlib and plotly is supported at the moment")
         
-        # make the output directory if not exists
-        os.makedirs(image_path_out, exist_ok=True)
-
-        
-        buildings = self.get_buildings(city)
-        satellite_image = self.get_satellite_image(city)#
-        
+        satellite_data = self.get_satellite_image(city)        
         mask = self.get_building_mask(city)
+        # Take out slice if only a slice is to be plotted
+        if slice_to_be_plotted is not None:
+            satellite_data = satellite_data[*slice_to_be_plotted]
+            mask = mask[*slice_to_be_plotted]
         
-        # Design plots
-        fig, ax = plt.subplots(figsize=figure_size)
-        buildings.plot(ax=ax, color="black")
-        plt.title(f"{city} buildings")
-        plt.axis("off")
+        if backend =="matplotlib":
+            #load buildings
+            buildings = self.get_buildings(city)
+
+            # create image out path
+            image_path_out = os.path.join(image_directory, city)
+             # make the output directory if not exists
+            os.makedirs(image_path_out, exist_ok=True)
+
+            # Design plots
+            fig, ax = plt.subplots(figsize=figure_size)
+            buildings.plot(ax=ax, color="black")
+            plt.title(f"{city} buildings")
+            plt.axis("off")
 
         # RGB Bands from Sentinel 2
-        red = satellite_image.read(1)
-        green = satellite_image.read(2)
-        blue = satellite_image.read(3)
-        
+        red = satellite_data[...,0]
+        green = satellite_data[...,1]
+        blue = satellite_data[...,2]
 
-
-
+        # Apply histogram stretching
         red_stretched = stretch_hist(red)
         green_stretched = stretch_hist(green)
         blue_stretched = stretch_hist(blue)
 
-        print(red_stretched.shape, green_stretched.shape, blue_stretched.shape)
         # Stack the bands after stretching
         rgb_stretched = np.dstack((red_stretched, green_stretched, blue_stretched))
 
-        # Plot the histogram-stretched RGB image
-        plt.figure(figsize=figure_size)
-        plt.imshow(rgb_stretched)
-        # plt.title("Histogram Stretched RGB Composite Image")
-        plt.title(f"{city} RGB Bands from Sentinel-2 L2A")
-        plt.axis("off")
-        # plt.show()
-        plt.savefig(os.path.join(image_path_out, f"{city}_RGB.png"))
-        if show_plot:
-            plt.show()
-        plt.close()
+        
+
+        if backend =="matplotlib":
+            # Plot the histogram-stretched RGB image
+            plt.figure(figsize=figure_size)
+            plt.imshow(rgb_stretched)
+            # plt.title("Histogram Stretched RGB Composite Image")
+            plt.title(f"{city} RGB Bands from Sentinel-2 L2A")
+            plt.axis("off")
+            # plt.show()
+            plt.savefig(os.path.join(image_path_out, f"{city}_RGB.png"))
+            if show_plot:
+                plt.show()
+            plt.close()
 
 
         # RGB image with higher brightness
@@ -378,32 +405,80 @@ class DataHandler:
 
         pseudo_RGB_image_brighter = pseudo_RGB_image_normalized * brightness
         pseudo_RGB_image_brighter = np.clip(pseudo_RGB_image_brighter, 0, 1)
-        plt.figure(figsize=figure_size)
-        plt.imshow(pseudo_RGB_image_brighter)
-        plt.title(f"{city} RGB Image")
-        plt.axis("off")
-        # plt.show()
-        plt.savefig(os.path.join(image_path_out, f"{city}_RGB_Brighter.png"))
-        if show_plot:
-            plt.show()
-        plt.close()
 
-        # single band img
-        # single_band = satellite_image.read(1)
-        single_band_stretched = stretch_hist(satellite_image.read(1))
-        plt.figure(figsize=figure_size)
-        plt.imshow(single_band_stretched, cmap="gray")
-        plt.title(f"{city} Single Band Image")
-        plt.axis("off")
-        # plt.show()
-        plt.savefig(os.path.join(image_path_out, f"{city}_SingleBand.png"))
-        if show_plot:
-            plt.show()
-        plt.close()
+        if backend =="matplotlib":
+            plt.figure(figsize=figure_size)
+            plt.imshow(pseudo_RGB_image_brighter)
+            plt.title(f"{city} RGB Image")
+            plt.axis("off")
+            # plt.show()
+            plt.savefig(os.path.join(image_path_out, f"{city}_RGB_Brighter.png"))
+            if show_plot:
+                plt.show()
+            plt.close()
+
+            # single band img
+            # single_band = satellite_image.read(1)
+            single_band_stretched = stretch_hist(red)
+            plt.figure(figsize=figure_size)
+            plt.imshow(single_band_stretched, cmap="gray")
+            plt.title(f"{city} Single Band Image")
+            plt.axis("off")
+            # plt.show()
+            plt.savefig(os.path.join(image_path_out, f"{city}_SingleBand.png"))
+            if show_plot:
+                plt.show()
+            plt.close()
+        elif backend == "plotly":
+
+            # plot the mask
+            fig = px.imshow(mask.astype(np.uint8), binary_string=True)
+
+            # Overlay the mask with the image
+            fig.add_trace(go.Image(z=(pseudo_RGB_image_brighter * 255).astype(np.uint8), opacity=1))
+
+
+            # Update layout with a button to toggle mask visibility
+            fig.update_layout(
+                updatemenus=[
+                    dict(
+                        type="buttons",
+                        direction="left",
+                        buttons=list([
+                            dict(
+                                args=[{"opacity": [0,1]}],
+                                label="Hide Mask",
+                                method="restyle"
+                            ),
+                            dict(
+                                args=[{"opacity": [0.5, 0.5]}],
+                                label="Show Mask",
+                                method="restyle"
+                            )
+                        ]),
+                    ),
+                ],
+                xaxis=dict(
+                    scaleanchor="y",
+                    scaleratio=1
+                ),
+                yaxis=dict(
+                    scaleanchor="x",
+                    scaleratio=1
+                )
+            )
+
+            # Enable zooming and panning
+            fig.update_xaxes(constrain='domain')
+            fig.update_yaxes(scaleanchor='x', scaleratio=1)
+            fig.update_layout(height=1000, width=1000)
+
+            # Display the figure
+            return fig
 
 
         # B8 B4 B3 -> False Color
-        b8 = satellite_image.read(4)
+        b8 = satellite_data[...,3]
         b8_stretched = stretch_hist(b8)
         b4 = red_stretched
         b3 = green_stretched
@@ -422,9 +497,9 @@ class DataHandler:
         # params["bands"] = ["B04", "B03", "B02", "B08", "B12", "B11", "SCL"] # scl must be last
 
         # B12, B11, B4 -> False Color Urban
-        b12 = satellite_image.read(5)
-        b11 = satellite_image.read(6)
-        b04 = satellite_image.read(1)
+        b12 = satellite_data[...,4]
+        b11 = satellite_data[...,5]
+        b04 = red
         b12_norm = (b12 - np.min(b12)) / (np.max(b12) - np.min(b12))
         b11_norm = (b11 - np.min(b11)) / (np.max(b11) - np.min(b11))
         b04_norm = (b04 - np.min(b04)) / (np.max(b04) - np.min(b04))
@@ -449,7 +524,7 @@ class DataHandler:
             return (band1 - band2) / (band1 + band2)
 
 
-        ndvi = vegetation_index(satellite_image.read(4), satellite_image.read(3))
+        ndvi = vegetation_index(satellite_data[...,3], satellite_data[...,2])
         plt.figure(figsize=figure_size)
         plt.imshow(ndvi, cmap="RdYlGn")
         plt.title(f"{city} NDVI Image")
@@ -474,12 +549,9 @@ class DataHandler:
 
         # Load the image
         img = single_band_stretched  # Assuming `blue_stretched` is the single band image
-        with rasterio.open(f"data/{city}/building_mask.tif") as ds_mask:
-            mask = ds_mask.read(1)
-
         blue_cmap = plt.cm.Blues
         blue_building_mask = blue_cmap(mask / mask.max())
-        blue_building_mask[..., 3] = mask * 0.8
+        blue_building_mask[..., 2] = mask * 0.8
 
         # Plot the image
         plt.figure(figsize=(10, 10))
