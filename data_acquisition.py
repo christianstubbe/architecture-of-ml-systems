@@ -135,10 +135,10 @@ class DataHandler:
         """
         Connect to the openEO backend and 
         """
-        if self.connection is None:
+        if self.openeo_connection is None:
             connection = openeo.connect("openeo.dataspace.copernicus.eu")
             connection.authenticate_oidc()
-            self.connection = connection
+            self.openeo_connection = connection
 
             self.logger.info("Connected to openEO")
         else:
@@ -153,7 +153,7 @@ class DataHandler:
         
         # Log the currently running jobs
         self.logger.info("Current jobs:")
-        for idx, job in enumerate(self.connection.list_jobs()):
+        for idx, job in enumerate(self.openeo_connection.list_jobs()):
             self.logger.info(f"{idx} {job['id']} {job['status']}")
 
         # Retry job up to 3 times. Raise exception after 3 retries.
@@ -168,7 +168,7 @@ class DataHandler:
             job_number_of_retries += 1
 
         # Get job results and store in data/city
-        job_results = self.connection.job(job.job_id).get_results()
+        job_results = self.openeo_connection.job(job.job_id).get_results()
         job_results.download_files(f"data/{city}")
         self.logger.info(f"{city}: Downloaded job results to data/{city}")
 
@@ -179,9 +179,9 @@ class DataHandler:
         """
         self.connect_to_openeo()
 
-        for idx, job in enumerate(self.connection.list_jobs()):
+        for idx, job in enumerate(self.openeo_connection.list_jobs()):
             self.logger.info(f"Deleteing job {idx}, {job["id"]}, {job["status"]}")
-            self.connection.job(job["id"]).delete_job()
+            self.openeo_connection.job(job["id"]).delete_job()
 
 
     def create_and_start_openeo_job(self, city: str, collection_id: str = "SENTINEL2_L2A"):
@@ -193,7 +193,7 @@ class DataHandler:
         boundingbox = {"west": boundingbox[0], "south": boundingbox[1], "east": boundingbox[2], "north": boundingbox[3]}
         
         # Create datacube
-        datacube = self.connection.load_collection(
+        datacube = self.openeo_connection.load_collection(
             collection_id=collection_id,
             spatial_extent=boundingbox,
             temporal_extent=self.openeo_temporal_extent,
@@ -240,7 +240,7 @@ class DataHandler:
         """
 
         for i in range(30):
-            status = self.connection.job(job.job_id).status()
+            status = self.openeo_connection.job(job.job_id).status()
             self.logger.debug(f"{city}: Job {job.job_id} status: {status}")
           
             if status == "finished":
