@@ -91,7 +91,7 @@ class DataHandler:
         bounds_path = f"data/{city}/bounds.pkl"
         if os.path.exists(bounds_path):
             with open(bounds_path, "rb") as f:
-                boundingbox = pickle.read(f)
+                boundingbox = pickle.load(f)
             return boundingbox
         
         # Ensure OSM data is available 

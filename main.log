@@ -7267,3 +7267,37 @@
 2024-06-24 11:07:56,575 - root - INFO - __init__ - Data directory already exists
 2024-06-24 11:07:56,576 - root - INFO - create_directory - Aachen: Directory available
 2024-06-24 11:07:56,577 - root - INFO - get_buildings - Aachen: Using local building data
+2024-06-24 11:08:41,295 - root - INFO - get_satellite_image - Aachen: Using local satellite image
+2024-06-24 11:08:41,298 - rasterio._env - WARNING - open - CPLE_AppDefined in data/Aachen/openEO.tif: TIFFReadDirectory:Sum of Photometric type-related color channels and ExtraSamples doesn't match SamplesPerPixel. Defining non-color channels as ExtraSamples.
+2024-06-24 11:08:41,307 - root - INFO - get_building_mask - Aachen: Using local building mask
+2024-06-24 11:08:41,309 - root - INFO - create_directory - Frankfurt: Directory available
+2024-06-24 11:08:41,310 - root - INFO - get_buildings - Frankfurt: Using local building data
+2024-06-24 11:12:12,253 - fiona._env - WARNING - from_features - Several features with id = 214284936 have been found. Altering it to be unique. This warning will not be emitted anymore for this layer
+2024-06-24 11:12:16,765 - openeo.config - INFO - get_config - Loaded openEO client config from sources: []
+2024-06-24 11:12:17,315 - openeo.rest.connection - INFO - _get_oidc_provider - Found OIDC providers: ['CDSE']
+2024-06-24 11:12:17,316 - openeo.rest.connection - INFO - _get_oidc_provider - No OIDC provider given, but only one available: 'CDSE'. Using that one.
+2024-06-24 11:12:22,530 - openeo.rest.connection - INFO - _get_oidc_provider_and_client_info - Using default client_id 'sh-b1c3a958-52d4-40fe-a333-153595d1c71e' from OIDC provider 'CDSE' info.
+2024-06-24 11:12:22,531 - openeo.rest.connection - INFO - authenticate_oidc - Found refresh token: trying refresh token based authentication.
+2024-06-24 11:12:22,532 - openeo.rest.auth.oidc - INFO - _do_token_post_request - Doing 'refresh_token' token request 'https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token' with post data fields ['grant_type', 'client_id', 'refresh_token'] (client_id 'sh-b1c3a958-52d4-40fe-a333-153595d1c71e')
+2024-06-24 11:12:22,804 - openeo.rest.connection - INFO - _authenticate_oidc - Obtained tokens: ['access_token', 'id_token', 'refresh_token']
+2024-06-24 11:12:22,806 - openeo.rest.auth.config - INFO - set_refresh_token - Storing refresh token for issuer 'https://identity.dataspace.copernicus.eu/auth/realms/CDSE' (client 'sh-b1c3a958-52d4-40fe-a333-153595d1c71e')
+2024-06-24 11:12:22,809 - root - INFO - connect_to_openeo - Connected to openEO
+2024-06-24 11:12:22,810 - root - INFO - download_satellite_image - Current jobs:
+2024-06-24 11:12:23,197 - root - INFO - download_satellite_image - 0 j-2406105ee1c14c16b233239d4d21b965 finished
+2024-06-24 11:12:23,198 - root - INFO - download_satellite_image - 1 j-2406102b3c4a47b1ae42eea7c2a79987 finished
+2024-06-24 11:12:23,199 - root - INFO - download_satellite_image - 2 j-24061593d4a2443ab5c8facf203efe13 finished
+2024-06-24 11:12:23,200 - root - INFO - download_satellite_image - 3 j-240615fd2234409db7b39207956601c4 finished
+2024-06-24 11:12:23,201 - root - INFO - download_satellite_image - 4 j-24061572bb914b41b7031037bcffab1c finished
+2024-06-24 11:12:23,201 - root - INFO - download_satellite_image - 5 j-2406154113d34000826f37052798966b finished
+2024-06-24 11:12:23,202 - root - INFO - download_satellite_image - 6 j-24061595755343568506caaae00e4fd8 error
+2024-06-24 11:12:23,202 - root - INFO - download_satellite_image - 7 j-2406152527c14f1f8596fbd1629805f5 finished
+2024-06-24 11:12:23,202 - root - INFO - download_satellite_image - 8 j-2406159105044cb7bdcdf8dcafcbbddd finished
+2024-06-24 11:12:23,203 - root - INFO - download_satellite_image - 9 j-240615fbdefd47258aafe0c76e052433 finished
+2024-06-24 11:12:23,203 - root - INFO - download_satellite_image - 10 j-240615a2bc784ac39646fa59f0c2bc0b finished
+2024-06-24 11:12:23,204 - root - INFO - download_satellite_image - 11 j-240615ce7fb94ab2ac35bf62c7f619b1 finished
+2024-06-24 11:12:23,205 - root - INFO - download_satellite_image - 12 j-240615add9794758a346de52441a302e finished
+2024-06-24 11:12:23,205 - root - INFO - download_satellite_image - 13 j-240615ecf88d44f8b9be65904740d809 finished
+2024-06-24 11:12:23,206 - root - INFO - download_satellite_image - 14 j-24061555459b48bf8f10bd926fb14f24 finished
+2024-06-24 11:17:15,252 - root - INFO - __init__ - Data directory already exists
+2024-06-24 11:17:15,253 - root - INFO - create_directory - Aachen: Directory available
+2024-06-24 11:17:15,254 - root - INFO - get_buildings - Aachen: Using local building data
