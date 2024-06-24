@@ -179,7 +179,7 @@ class DataHandler:
         self.connect_to_openeo()
 
         for idx, job in enumerate(self.openeo_connection.list_jobs()):
-            self.logger.info(f"Deleteing job {idx}, {job["id"]}, {job["status"]}")
+            self.logger.info(f"Deleting job {idx}, {job['id']}, {job['status']}")
             self.openeo_connection.job(job["id"]).delete_job()
 
 
@@ -300,34 +300,48 @@ class DataHandler:
         return mask
 
 
-    # TODO: Finish with Joscha.
-    def plot(self, city: str, backend: str = "matplotlib"):
+    def plot(self, city: str = "BerlinTest", 
+
+             backend: str = "matplotlib",
+             figure_size: tuple = (10, 10),
+             brightness: int = 5,
+             image_path_out: str = "img/BerlinTest",
+             show_plot: bool = False
+             ):
         """
         Plot the data for a city either with matplotlib or plotly.
         """
-        
-        if backend != "matplotlib":
-            raise NotImplementedError("Only matplotlib is supported at the moment")
-        
-        buildings = self.get_buildings(city)
-        satellite_image = self.get_satellite_image(city)
-        mask = self.get_building_mask(city)
-        
-        # Design plots
-        fig, ax = plt.subplots(figsize=(10, 10))
-        buildings.plot(ax=ax, color="black")
-        plt.title(f"{city} buildings")
-        plt.axis("off")
 
-        # Create RGB image
-        red = satellite_image.read(1)
-        green = satellite_image.read(2)
-        blue = satellite_image.read(3)
-        
         # apply histogram stretching
         def stretch_hist(band):
             p2, p98 = np.percentile(band, (0.5, 99.5))
             return np.clip((band - p2) * 255.0 / (p98 - p2), 0, 255).astype(np.uint8)
+    
+    
+        if backend != "matplotlib":
+            raise NotImplementedError("Only matplotlib is supported at the moment")
+        
+        # make the output directory if not exists
+        os.makedirs(image_path_out, exist_ok=True)
+
+        
+        buildings = self.get_buildings(city)
+        satellite_image = self.get_satellite_image(city)#
+        
+        mask = self.get_building_mask(city)
+        
+        # Design plots
+        fig, ax = plt.subplots(figsize=figure_size)
+        buildings.plot(ax=ax, color="black")
+        plt.title(f"{city} buildings")
+        plt.axis("off")
+
+        # RGB Bands from Sentinel 2
+        red = satellite_image.read(1)
+        green = satellite_image.read(2)
+        blue = satellite_image.read(3)
+        
+
 
 
         red_stretched = stretch_hist(red)
@@ -342,10 +356,12 @@ class DataHandler:
         plt.figure(figsize=figure_size)
         plt.imshow(rgb_stretched)
         # plt.title("Histogram Stretched RGB Composite Image")
-        plt.title("RGB Bands from Sentinel-2 L2A")
+        plt.title(f"{city} RGB Bands from Sentinel-2 L2A")
         plt.axis("off")
         # plt.show()
-        plt.savefig(os.path.join(image_path_berlin, "BerlinTest_RGB.png"))
+        plt.savefig(os.path.join(image_path_out, f"{city}_RGB.png"))
+        if show_plot:
+            plt.show()
         plt.close()
 
 
@@ -364,26 +380,30 @@ class DataHandler:
         pseudo_RGB_image_brighter = np.clip(pseudo_RGB_image_brighter, 0, 1)
         plt.figure(figsize=figure_size)
         plt.imshow(pseudo_RGB_image_brighter)
-        plt.title("RGB Image")
+        plt.title(f"{city} RGB Image")
         plt.axis("off")
         # plt.show()
-        plt.savefig(os.path.join(image_path_berlin, "BerlinTest_RGB_Brighter.png"))
+        plt.savefig(os.path.join(image_path_out, f"{city}_RGB_Brighter.png"))
+        if show_plot:
+            plt.show()
         plt.close()
 
         # single band img
-        # single_band = dataset.read(1)
-        single_band_stretched = stretch_hist(dataset.read(1))
+        # single_band = satellite_image.read(1)
+        single_band_stretched = stretch_hist(satellite_image.read(1))
         plt.figure(figsize=figure_size)
         plt.imshow(single_band_stretched, cmap="gray")
-        plt.title("Single Band Image")
+        plt.title(f"{city} Single Band Image")
         plt.axis("off")
         # plt.show()
-        plt.savefig(os.path.join(image_path_berlin, "BerlinTest_SingleBand.png"))
+        plt.savefig(os.path.join(image_path_out, f"{city}_SingleBand.png"))
+        if show_plot:
+            plt.show()
         plt.close()
 
 
         # B8 B4 B3 -> False Color
-        b8 = dataset.read(4)
+        b8 = satellite_image.read(4)
         b8_stretched = stretch_hist(b8)
         b4 = red_stretched
         b3 = green_stretched
@@ -391,18 +411,20 @@ class DataHandler:
         false_color = np.dstack((b8_stretched, b4, b3))
         plt.figure(figsize=figure_size)
         plt.imshow(false_color)
-        plt.title("False Color Image")
+        plt.title(f"{city} False Color Image")
         plt.axis("off")
         # plt.show()
-        plt.savefig(os.path.join(image_path_berlin, "BerlinTest_FalseColor.png"))
+        plt.savefig(os.path.join(image_path_out, f"{city}_FalseColor.png"))
+        if show_plot:
+            plt.show()
         plt.close()
 
         # params["bands"] = ["B04", "B03", "B02", "B08", "B12", "B11", "SCL"] # scl must be last
 
         # B12, B11, B4 -> False Color Urban
-        b12 = dataset.read(5)
-        b11 = dataset.read(6)
-        b04 = dataset.read(1)
+        b12 = satellite_image.read(5)
+        b11 = satellite_image.read(6)
+        b04 = satellite_image.read(1)
         b12_norm = (b12 - np.min(b12)) / (np.max(b12) - np.min(b12))
         b11_norm = (b11 - np.min(b11)) / (np.max(b11) - np.min(b11))
         b04_norm = (b04 - np.min(b04)) / (np.max(b04) - np.min(b04))
@@ -413,10 +435,12 @@ class DataHandler:
 
         plt.figure(figsize=figure_size)
         plt.imshow(false_color_urban)
-        plt.title("False Color Urban Image")
+        plt.title(f"{city} False Color Urban Image")
         plt.axis("off")
         # plt.show()
-        plt.savefig(os.path.join(image_path_berlin, "BerlinTest_FalseColorUrban.png"))
+        plt.savefig(os.path.join(image_path_out, f"{city}_FalseColorUrban.png"))
+        if show_plot:
+            plt.show()
         plt.close()
 
 
@@ -425,28 +449,32 @@ class DataHandler:
             return (band1 - band2) / (band1 + band2)
 
 
-        ndvi = vegetation_index(dataset.read(4), dataset.read(3))
+        ndvi = vegetation_index(satellite_image.read(4), satellite_image.read(3))
         plt.figure(figsize=figure_size)
         plt.imshow(ndvi, cmap="RdYlGn")
-        plt.title("NDVI Image")
+        plt.title(f"{city} NDVI Image")
         plt.axis("off")
         # plt.show()
-        plt.savefig(os.path.join(image_path_berlin, "BerlinTest_NDVI.png"))
+        plt.savefig(os.path.join(image_path_out, f"{city}_NDVI.png"))
+        if show_plot:
+            plt.show()
         plt.close()
 
         # Visualize the mask
         plt.figure(figsize=(10, 10))
         plt.imshow(mask, cmap="Blues")
-        plt.title("Building Mask")
+        plt.title(f"{city} Building Mask")
         plt.axis("off")
         # plt.show()
-        plt.savefig(os.path.join(image_path_berlin, "BerlinTest_BuildingMask.png"))
+        plt.savefig(os.path.join(image_path_out, f"{city}_BuildingMask.png"))
+        if show_plot:
+            plt.show()
         plt.close()
 
 
         # Load the image
         img = single_band_stretched  # Assuming `blue_stretched` is the single band image
-        with rasterio.open("data/BerlinTest/building_mask.tif") as ds_mask:
+        with rasterio.open(f"data/{city}/building_mask.tif") as ds_mask:
             mask = ds_mask.read(1)
 
         blue_cmap = plt.cm.Blues
@@ -460,10 +488,15 @@ class DataHandler:
         plt.imshow(blue_building_mask)
 
         # Set the title and axis labels
-        plt.title("Image with Buildings Mask")
+        plt.title(f"{city} Image with Buildings Mask")
         plt.axis("off")
 
         # Show the plot
         # plt.show()
-        plt.savefig(os.path.join(image_path_berlin, "BerlinTest_BuildingMaskOverlay.png"))
+        plt.savefig(os.path.join(image_path_out, f"{city}_BuildingMaskOverlay.png"))
+        if show_plot:
+            plt.show()
         plt.close()
+
+
+

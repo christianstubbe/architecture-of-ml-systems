@@ -7410,3 +7410,113 @@
 2024-06-24 15:15:29,003 - root - INFO - get_building_mask - Frankfurt: Using local building mask
 2024-06-24 15:15:45,065 - root - INFO - get_building_mask - Frankfurt: Using local building mask
 2024-06-24 15:17:03,223 - root - INFO - get_building_mask - Frankfurt: Using local building mask
+2024-06-24 15:56:51,071 - root - INFO - __init__ - Created data directory
+2024-06-24 15:57:02,246 - root - INFO - create_directory - Aachen: Directory available
+2024-06-24 15:58:28,286 - root - INFO - create_directory - Aachen: Directory available
+2024-06-24 15:58:28,299 - root - INFO - get_buildings - Aachen: Downloaded data to data/Aachen
+2024-06-24 16:00:54,237 - root - INFO - create_directory - Aachen: Directory available
+2024-06-24 16:00:54,238 - root - INFO - get_buildings - Aachen: Using local building data
+2024-06-24 16:01:39,166 - root - INFO - get_satellite_image - Aachen: Using local satellite image
+2024-06-24 16:01:39,213 - rasterio._env - WARNING - open - CPLE_AppDefined in data/Aachen/openEO.tif: TIFFReadDirectory:Sum of Photometric type-related color channels and ExtraSamples doesn't match SamplesPerPixel. Defining non-color channels as ExtraSamples.
+2024-06-24 16:01:39,251 - root - INFO - get_building_mask - Aachen: Using local building mask
+2024-06-24 16:01:39,259 - root - INFO - create_directory - A: Directory available
+2024-06-24 16:02:10,636 - root - INFO - create_directory - Aachen: Directory available
+2024-06-24 16:02:10,642 - root - INFO - get_buildings - Aachen: Using local building data
+2024-06-24 16:02:56,237 - root - INFO - get_satellite_image - Aachen: Using local satellite image
+2024-06-24 16:02:56,276 - rasterio._env - WARNING - open - CPLE_AppDefined in data/Aachen/openEO.tif: TIFFReadDirectory:Sum of Photometric type-related color channels and ExtraSamples doesn't match SamplesPerPixel. Defining non-color channels as ExtraSamples.
+2024-06-24 16:02:56,286 - root - INFO - get_building_mask - Aachen: Using local building mask
+2024-06-24 16:03:27,226 - root - INFO - create_directory - Aachen: Directory available
+2024-06-24 16:03:27,243 - root - INFO - get_buildings - Aachen: Using local building data
+2024-06-24 16:04:13,007 - root - INFO - get_satellite_image - Aachen: Using local satellite image
+2024-06-24 16:04:13,044 - rasterio._env - WARNING - open - CPLE_AppDefined in data/Aachen/openEO.tif: TIFFReadDirectory:Sum of Photometric type-related color channels and ExtraSamples doesn't match SamplesPerPixel. Defining non-color channels as ExtraSamples.
+2024-06-24 16:04:13,053 - root - INFO - get_building_mask - Aachen: Using local building mask
+2024-06-24 16:04:22,504 - root - INFO - create_directory - Aachen: Directory available
+2024-06-24 16:04:22,505 - root - INFO - get_buildings - Aachen: Using local building data
+2024-06-24 16:05:09,594 - root - INFO - get_satellite_image - Aachen: Using local satellite image
+2024-06-24 16:05:09,635 - rasterio._env - WARNING - open - CPLE_AppDefined in data/Aachen/openEO.tif: TIFFReadDirectory:Sum of Photometric type-related color channels and ExtraSamples doesn't match SamplesPerPixel. Defining non-color channels as ExtraSamples.
+2024-06-24 16:05:09,645 - root - INFO - get_building_mask - Aachen: Using local building mask
+2024-06-24 16:16:16,515 - root - INFO - __init__ - Data directory already exists
+2024-06-24 16:16:18,760 - root - INFO - create_directory - Aachen: Directory available
+2024-06-24 16:16:18,762 - root - INFO - get_buildings - Aachen: Using local building data
+2024-06-24 16:17:04,514 - root - INFO - get_satellite_image - Aachen: Using local satellite image
+2024-06-24 16:17:04,552 - rasterio._env - WARNING - open - CPLE_AppDefined in data/Aachen/openEO.tif: TIFFReadDirectory:Sum of Photometric type-related color channels and ExtraSamples doesn't match SamplesPerPixel. Defining non-color channels as ExtraSamples.
+2024-06-24 16:17:04,571 - root - INFO - get_building_mask - Aachen: Using local building mask
+2024-06-24 16:17:44,959 - root - INFO - create_directory - Aachen: Directory available
+2024-06-24 16:17:44,961 - root - INFO - get_buildings - Aachen: Using local building data
+2024-06-24 16:18:32,435 - root - INFO - get_satellite_image - Aachen: Using local satellite image
+2024-06-24 16:18:32,475 - rasterio._env - WARNING - open - CPLE_AppDefined in data/Aachen/openEO.tif: TIFFReadDirectory:Sum of Photometric type-related color channels and ExtraSamples doesn't match SamplesPerPixel. Defining non-color channels as ExtraSamples.
+2024-06-24 16:18:32,484 - root - INFO - get_building_mask - Aachen: Using local building mask
+2024-06-24 16:22:49,917 - root - INFO - __init__ - Data directory already exists
+2024-06-24 16:22:50,381 - root - INFO - create_directory - Aachen: Directory available
+2024-06-24 16:22:50,385 - root - INFO - get_buildings - Aachen: Using local building data
+2024-06-24 16:23:36,199 - root - INFO - get_satellite_image - Aachen: Using local satellite image
+2024-06-24 16:23:36,236 - rasterio._env - WARNING - open - CPLE_AppDefined in data/Aachen/openEO.tif: TIFFReadDirectory:Sum of Photometric type-related color channels and ExtraSamples doesn't match SamplesPerPixel. Defining non-color channels as ExtraSamples.
+2024-06-24 16:23:36,266 - root - INFO - get_building_mask - Aachen: Using local building mask
+2024-06-24 16:23:36,286 - root - INFO - create_directory - Aachen: Directory available
+2024-06-24 16:23:36,289 - root - INFO - get_buildings - Aachen: Using local building data
+2024-06-24 16:24:23,845 - root - INFO - get_satellite_image - Aachen: Using local satellite image
+2024-06-24 16:24:23,886 - rasterio._env - WARNING - open - CPLE_AppDefined in data/Aachen/openEO.tif: TIFFReadDirectory:Sum of Photometric type-related color channels and ExtraSamples doesn't match SamplesPerPixel. Defining non-color channels as ExtraSamples.
+2024-06-24 16:24:23,895 - root - INFO - get_building_mask - Aachen: Using local building mask
+2024-06-24 16:26:53,071 - root - INFO - __init__ - Data directory already exists
+2024-06-24 16:26:53,162 - root - INFO - create_directory - Aachen: Directory available
+2024-06-24 16:26:53,165 - root - INFO - get_buildings - Aachen: Using local building data
+2024-06-24 16:27:38,061 - root - INFO - get_satellite_image - Aachen: Using local satellite image
+2024-06-24 16:27:38,096 - rasterio._env - WARNING - open - CPLE_AppDefined in data/Aachen/openEO.tif: TIFFReadDirectory:Sum of Photometric type-related color channels and ExtraSamples doesn't match SamplesPerPixel. Defining non-color channels as ExtraSamples.
+2024-06-24 16:27:38,115 - root - INFO - get_building_mask - Aachen: Using local building mask
+2024-06-24 16:27:38,132 - root - INFO - create_directory - Aachen: Directory available
+2024-06-24 16:27:38,132 - root - INFO - get_buildings - Aachen: Using local building data
+2024-06-24 16:28:24,789 - root - INFO - get_satellite_image - Aachen: Using local satellite image
+2024-06-24 16:28:24,830 - rasterio._env - WARNING - open - CPLE_AppDefined in data/Aachen/openEO.tif: TIFFReadDirectory:Sum of Photometric type-related color channels and ExtraSamples doesn't match SamplesPerPixel. Defining non-color channels as ExtraSamples.
+2024-06-24 16:28:24,839 - root - INFO - get_building_mask - Aachen: Using local building mask
+2024-06-24 16:31:10,434 - root - INFO - create_directory - Aachen: Directory available
+2024-06-24 16:31:10,441 - root - INFO - get_buildings - Aachen: Using local building data
+2024-06-24 16:31:56,221 - root - INFO - get_satellite_image - Aachen: Using local satellite image
+2024-06-24 16:31:56,263 - rasterio._env - WARNING - open - CPLE_AppDefined in data/Aachen/openEO.tif: TIFFReadDirectory:Sum of Photometric type-related color channels and ExtraSamples doesn't match SamplesPerPixel. Defining non-color channels as ExtraSamples.
+2024-06-24 16:31:56,271 - root - INFO - get_building_mask - Aachen: Using local building mask
+2024-06-24 16:31:56,280 - root - INFO - create_directory - Frankfurt: Directory available
+2024-06-24 16:32:13,204 - root - INFO - get_buildings - Frankfurt: Downloaded data to data/Frankfurt
+2024-06-24 16:32:38,029 - root - INFO - get_boundingbox - Frankfurt: Bounding box is None. Using total bounds instead
+2024-06-24 16:32:38,031 - root - INFO - get_boundingbox - Frankfurt: Bounding box is [ 8.44000053 49.93001175  9.08996868 50.34999466]
+2024-06-24 16:32:38,032 - root - INFO - get_boundingbox - Frankfurt: Saved bounds to data/Frankfurt/bounds.pkl
+2024-06-24 16:35:21,302 - root - INFO - get_buildings - Frankfurt: Stored data to data/Frankfurt/buildings.geojson
+2024-06-24 16:35:21,872 - openeo.config - INFO - get_config - Loaded openEO client config from sources: []
+2024-06-24 16:35:22,552 - openeo.rest.connection - INFO - _get_oidc_provider - Found OIDC providers: ['CDSE']
+2024-06-24 16:35:22,553 - openeo.rest.connection - INFO - _get_oidc_provider - No OIDC provider given, but only one available: 'CDSE'. Using that one.
+2024-06-24 16:35:22,855 - openeo.rest.connection - INFO - _get_oidc_provider_and_client_info - Using default client_id 'sh-b1c3a958-52d4-40fe-a333-153595d1c71e' from OIDC provider 'CDSE' info.
+2024-06-24 16:35:22,856 - openeo.rest.connection - INFO - authenticate_oidc - Found refresh token: trying refresh token based authentication.
+2024-06-24 16:35:22,857 - openeo.rest.auth.oidc - INFO - _do_token_post_request - Doing 'refresh_token' token request 'https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token' with post data fields ['grant_type', 'client_id', 'refresh_token'] (client_id 'sh-b1c3a958-52d4-40fe-a333-153595d1c71e')
+2024-06-24 16:35:23,113 - openeo.rest.connection - INFO - _authenticate_oidc - Obtained tokens: ['access_token', 'id_token', 'refresh_token']
+2024-06-24 16:35:23,114 - openeo.rest.auth.config - INFO - set_refresh_token - Storing refresh token for issuer 'https://identity.dataspace.copernicus.eu/auth/realms/CDSE' (client 'sh-b1c3a958-52d4-40fe-a333-153595d1c71e')
+2024-06-24 16:35:23,116 - root - INFO - connect_to_openeo - Connected to openEO
+2024-06-24 16:35:23,116 - root - INFO - download_satellite_image - Current jobs:
+2024-06-24 16:35:33,420 - root - INFO - download_satellite_image - 0 j-2406134c81554c77b684174afa94d4e9 finished
+2024-06-24 16:35:33,421 - root - INFO - download_satellite_image - 1 j-24061372587d4cfab3cf74f361de3998 finished
+2024-06-24 16:35:33,422 - root - INFO - download_satellite_image - 2 j-240613257a804ed18666cf928e53288c finished
+2024-06-24 16:35:33,423 - root - INFO - download_satellite_image - 3 j-240613db505541ee81b709ea55f10668 finished
+2024-06-24 16:35:33,423 - root - INFO - download_satellite_image - 4 j-24061353e5064c7d868843b519372fcb finished
+2024-06-24 16:35:33,424 - root - INFO - download_satellite_image - 5 j-240613296c4b4e6a89d567e011ff9637 finished
+2024-06-24 16:35:33,425 - root - INFO - download_satellite_image - 6 j-240613d4e34745a5bd159d7d17ef5b6b finished
+2024-06-24 16:35:33,426 - root - INFO - download_satellite_image - 7 j-240613462ab84b1b8ba1b63f7e913c20 finished
+2024-06-24 16:35:33,427 - root - INFO - download_satellite_image - 8 j-2406136fccb04e4c9df74d81d28a79a6 finished
+2024-06-24 16:35:33,427 - root - INFO - download_satellite_image - 9 j-24061325786740158b97510abe1d58bd finished
+2024-06-24 16:35:33,428 - root - INFO - download_satellite_image - 10 j-240613abc60a4d9399b82ef63ac40ed5 finished
+2024-06-24 16:35:33,428 - root - INFO - download_satellite_image - 11 j-240613ff17564aa2bb5c812e0be9da7b finished
+2024-06-24 16:35:37,406 - root - INFO - create_and_start_openeo_job - Frankfurt: Created openEO job
+2024-06-24 16:35:56,763 - root - INFO - create_and_start_openeo_job - Frankfurt: Started openEO job with ID: j-2406242024e040bfbc124e4664093b5d
+2024-06-24 16:43:25,739 - root - INFO - await_job - Frankfurt: Job j-2406242024e040bfbc124e4664093b5d finished
+2024-06-24 16:43:28,234 - openeo.rest.job - INFO - download - Downloading Job result asset 'openEO.tif' from https://openeo.dataspace.copernicus.eu/openeo/1.2/jobs/j-2406242024e040bfbc124e4664093b5d/results/assets/MzM2ZTU1Y2MtNjU0Mi00YzUzLWEwMzMtMWI4OTE5NWFkZWFj/a2e5a033dfdb824b7ae7b3a1998da742/openEO.tif?expires=1719845008 to data/Frankfurt/openEO.tif
+2024-06-24 16:44:34,932 - root - INFO - download_satellite_image - Frankfurt: Downloaded job results to data/Frankfurt
+2024-06-24 16:44:34,933 - root - INFO - get_satellite_image - Frankfurt: Using local satellite image
+2024-06-24 16:44:34,936 - rasterio._env - WARNING - open - CPLE_AppDefined in data/Frankfurt/openEO.tif: TIFFReadDirectory:Sum of Photometric type-related color channels and ExtraSamples doesn't match SamplesPerPixel. Defining non-color channels as ExtraSamples.
+2024-06-24 16:44:34,939 - root - INFO - get_satellite_image - Frankfurt: Using local satellite image
+2024-06-24 16:44:34,941 - rasterio._env - WARNING - open - CPLE_AppDefined in data/Frankfurt/openEO.tif: TIFFReadDirectory:Sum of Photometric type-related color channels and ExtraSamples doesn't match SamplesPerPixel. Defining non-color channels as ExtraSamples.
+2024-06-24 16:44:34,944 - root - INFO - create_directory - Frankfurt: Directory available
+2024-06-24 16:44:34,945 - root - INFO - get_buildings - Frankfurt: Using local building data
+2024-06-24 16:48:10,398 - fiona._env - WARNING - from_features - Several features with id = 214284936 have been found. Altering it to be unique. This warning will not be emitted anymore for this layer
+2024-06-24 16:48:48,769 - root - INFO - create_directory - CapeTown: Directory available
+2024-06-24 16:48:48,775 - root - INFO - get_buildings - CapeTown: Using local building data
+2024-06-24 16:49:47,857 - root - INFO - get_satellite_image - CapeTown: Using local satellite image
+2024-06-24 16:49:47,911 - rasterio._env - WARNING - open - CPLE_AppDefined in data/CapeTown/openEO.tif: TIFFReadDirectory:Sum of Photometric type-related color channels and ExtraSamples doesn't match SamplesPerPixel. Defining non-color channels as ExtraSamples.
+2024-06-24 16:49:47,931 - root - INFO - get_building_mask - CapeTown: Using local building mask
+2024-06-24 16:49:47,957 - root - INFO - create_directory - Hamburg: Directory available
+2024-06-24 16:49:47,959 - root - INFO - get_buildings - Hamburg: Using local building data
