@@ -122,7 +122,6 @@ class DataHandler:
         """
         Get satellite images for a city. Use local data if available.
         """
-        # TODO: why is is openEO.tif?
         if os.path.exists(f"data/{city}/openEO.tif"):
             self.logger.info(f"{city}: Using local satellite image")
             return rasterio.open(f"data/{city}/openEO.tif")
@@ -255,15 +254,16 @@ class DataHandler:
         self.logger.error(f"{city}: Job {job.job_id} did not finish in time")
         return False
 
-    # TODO: Discuss with Joscha. Maybe split up into get_building_mask and create_building_mask?
     def get_building_mask(self, city: str):  
         """
-        Create a mask for buildings in a city.
+        Get the local building mask for buildings in a city.
         """
+        # Check if the building mask is already available
         if os.path.exists(f"data/{city}/building_mask.tif"):
             self.logger.info(f"{city}: Using local building mask")
-            return rasterio.open(f"data/{city}/building_mask.tif")
+            return rasterio.open(f"data/{city}/building_mask.tif").read(1)
 
+        # Create new building mask 
         satellite_image = self.get_satellite_image(city)
 
         # Get satellite image metadata

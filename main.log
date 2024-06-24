@@ -7397,3 +7397,16 @@
 2024-06-24 15:00:08,635 - root - INFO - download_satellite_image - Current jobs:
 2024-06-24 15:00:16,454 - root - INFO - create_and_start_openeo_job - Frankfurt: Created openEO job
 2024-06-24 15:00:39,723 - root - INFO - create_and_start_openeo_job - Frankfurt: Started openEO job with ID: j-24062417bdaa44be90ebf4b2488aa2e1
+2024-06-24 15:08:45,392 - root - INFO - await_job - Frankfurt: Job j-24062417bdaa44be90ebf4b2488aa2e1 finished
+2024-06-24 15:08:46,377 - openeo.rest.job - INFO - download - Downloading Job result asset 'openEO.tif' from https://openeo.dataspace.copernicus.eu/openeo/1.2/jobs/j-24062417bdaa44be90ebf4b2488aa2e1/results/assets/MTZjOWFjOTUtMWUzZC00NGM1LWFhZDAtNzlmMjIwODU1MDgw/a09cac888391d5ba9dc4b5480989dea1/openEO.tif?expires=1719839326 to data/Frankfurt/openEO.tif
+2024-06-24 15:09:50,091 - root - INFO - download_satellite_image - Frankfurt: Downloaded job results to data/Frankfurt
+2024-06-24 15:10:58,135 - root - INFO - get_satellite_image - Frankfurt: Using local satellite image
+2024-06-24 15:10:58,138 - rasterio._env - WARNING - open - CPLE_AppDefined in data/Frankfurt/openEO.tif: TIFFReadDirectory:Sum of Photometric type-related color channels and ExtraSamples doesn't match SamplesPerPixel. Defining non-color channels as ExtraSamples.
+2024-06-24 15:10:58,156 - root - INFO - create_directory - Frankfurt: Directory available
+2024-06-24 15:10:58,156 - root - INFO - get_buildings - Frankfurt: Using local building data
+2024-06-24 15:14:33,023 - fiona._env - WARNING - from_features - Several features with id = 214284936 have been found. Altering it to be unique. This warning will not be emitted anymore for this layer
+2024-06-24 15:15:11,265 - root - INFO - get_building_mask - Frankfurt: Using local building mask
+2024-06-24 15:15:21,206 - root - INFO - get_building_mask - Frankfurt: Using local building mask
+2024-06-24 15:15:29,003 - root - INFO - get_building_mask - Frankfurt: Using local building mask
+2024-06-24 15:15:45,065 - root - INFO - get_building_mask - Frankfurt: Using local building mask
+2024-06-24 15:17:03,223 - root - INFO - get_building_mask - Frankfurt: Using local building mask
