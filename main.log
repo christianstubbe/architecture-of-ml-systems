@@ -7301,3 +7301,84 @@
 2024-06-24 11:17:15,252 - root - INFO - __init__ - Data directory already exists
 2024-06-24 11:17:15,253 - root - INFO - create_directory - Aachen: Directory available
 2024-06-24 11:17:15,254 - root - INFO - get_buildings - Aachen: Using local building data
+2024-06-24 11:18:01,496 - root - INFO - get_satellite_image - Aachen: Using local satellite image
+2024-06-24 11:18:01,499 - rasterio._env - WARNING - open - CPLE_AppDefined in data/Aachen/openEO.tif: TIFFReadDirectory:Sum of Photometric type-related color channels and ExtraSamples doesn't match SamplesPerPixel. Defining non-color channels as ExtraSamples.
+2024-06-24 11:18:01,508 - root - INFO - get_building_mask - Aachen: Using local building mask
+2024-06-24 11:18:01,510 - root - INFO - create_directory - Frankfurt: Directory available
+2024-06-24 11:18:01,510 - root - INFO - get_buildings - Frankfurt: Using local building data
+2024-06-24 11:21:37,794 - fiona._env - WARNING - from_features - Several features with id = 214284936 have been found. Altering it to be unique. This warning will not be emitted anymore for this layer
+2024-06-24 11:21:42,129 - openeo.config - INFO - get_config - Loaded openEO client config from sources: []
+2024-06-24 11:21:42,907 - openeo.rest.connection - INFO - _get_oidc_provider - Found OIDC providers: ['CDSE']
+2024-06-24 11:21:42,908 - openeo.rest.connection - INFO - _get_oidc_provider - No OIDC provider given, but only one available: 'CDSE'. Using that one.
+2024-06-24 11:21:48,114 - openeo.rest.connection - INFO - _get_oidc_provider_and_client_info - Using default client_id 'sh-b1c3a958-52d4-40fe-a333-153595d1c71e' from OIDC provider 'CDSE' info.
+2024-06-24 11:21:48,116 - openeo.rest.connection - INFO - authenticate_oidc - Found refresh token: trying refresh token based authentication.
+2024-06-24 11:21:48,117 - openeo.rest.auth.oidc - INFO - _do_token_post_request - Doing 'refresh_token' token request 'https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token' with post data fields ['grant_type', 'client_id', 'refresh_token'] (client_id 'sh-b1c3a958-52d4-40fe-a333-153595d1c71e')
+2024-06-24 11:21:48,345 - openeo.rest.connection - INFO - _authenticate_oidc - Obtained tokens: ['access_token', 'id_token', 'refresh_token']
+2024-06-24 11:21:48,347 - openeo.rest.auth.config - INFO - set_refresh_token - Storing refresh token for issuer 'https://identity.dataspace.copernicus.eu/auth/realms/CDSE' (client 'sh-b1c3a958-52d4-40fe-a333-153595d1c71e')
+2024-06-24 11:21:48,350 - root - INFO - connect_to_openeo - Connected to openEO
+2024-06-24 11:21:48,351 - root - INFO - download_satellite_image - Current jobs:
+2024-06-24 11:21:48,672 - root - INFO - download_satellite_image - 0 j-2406105ee1c14c16b233239d4d21b965 finished
+2024-06-24 11:21:48,673 - root - INFO - download_satellite_image - 1 j-2406102b3c4a47b1ae42eea7c2a79987 finished
+2024-06-24 11:21:48,674 - root - INFO - download_satellite_image - 2 j-24061593d4a2443ab5c8facf203efe13 finished
+2024-06-24 11:21:48,675 - root - INFO - download_satellite_image - 3 j-240615fd2234409db7b39207956601c4 finished
+2024-06-24 11:21:48,675 - root - INFO - download_satellite_image - 4 j-24061572bb914b41b7031037bcffab1c finished
+2024-06-24 11:21:48,676 - root - INFO - download_satellite_image - 5 j-2406154113d34000826f37052798966b finished
+2024-06-24 11:21:48,677 - root - INFO - download_satellite_image - 6 j-24061595755343568506caaae00e4fd8 error
+2024-06-24 11:21:48,678 - root - INFO - download_satellite_image - 7 j-2406152527c14f1f8596fbd1629805f5 finished
+2024-06-24 11:21:48,679 - root - INFO - download_satellite_image - 8 j-2406159105044cb7bdcdf8dcafcbbddd finished
+2024-06-24 11:21:48,679 - root - INFO - download_satellite_image - 9 j-240615fbdefd47258aafe0c76e052433 finished
+2024-06-24 11:21:48,680 - root - INFO - download_satellite_image - 10 j-240615a2bc784ac39646fa59f0c2bc0b finished
+2024-06-24 11:21:48,681 - root - INFO - download_satellite_image - 11 j-240615ce7fb94ab2ac35bf62c7f619b1 finished
+2024-06-24 11:21:48,681 - root - INFO - download_satellite_image - 12 j-240615add9794758a346de52441a302e finished
+2024-06-24 11:21:48,682 - root - INFO - download_satellite_image - 13 j-240615ecf88d44f8b9be65904740d809 finished
+2024-06-24 11:21:48,683 - root - INFO - download_satellite_image - 14 j-24061555459b48bf8f10bd926fb14f24 finished
+2024-06-24 11:21:49,520 - root - INFO - create_and_start_openeo_job - Frankfurt: Created openEO job
+2024-06-24 11:22:07,680 - root - INFO - create_and_start_openeo_job - Frankfurt: Started openEO job with ID: j-24062496a4b84bebbfa35c05df28850a
+2024-06-24 12:49:41,785 - root - INFO - __init__ - Data directory already exists
+2024-06-24 12:49:41,786 - root - INFO - create_directory - Aachen: Directory available
+2024-06-24 12:49:41,787 - root - INFO - get_buildings - Aachen: Using local building data
+2024-06-24 12:51:46,594 - openeo.rest.connection - INFO - _get_oidc_provider - Found OIDC providers: ['CDSE']
+2024-06-24 12:51:46,595 - openeo.rest.connection - INFO - _get_oidc_provider - No OIDC provider given, but only one available: 'CDSE'. Using that one.
+2024-06-24 12:51:46,881 - openeo.rest.connection - INFO - _get_oidc_provider_and_client_info - Using default client_id 'sh-b1c3a958-52d4-40fe-a333-153595d1c71e' from OIDC provider 'CDSE' info.
+2024-06-24 12:51:46,883 - openeo.rest.connection - INFO - authenticate_oidc - Found refresh token: trying refresh token based authentication.
+2024-06-24 12:51:46,884 - openeo.rest.auth.oidc - INFO - _do_token_post_request - Doing 'refresh_token' token request 'https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token' with post data fields ['grant_type', 'client_id', 'refresh_token'] (client_id 'sh-b1c3a958-52d4-40fe-a333-153595d1c71e')
+2024-06-24 12:51:47,264 - openeo.rest.connection - INFO - _authenticate_oidc - Obtained tokens: ['access_token', 'id_token', 'refresh_token']
+2024-06-24 12:51:47,265 - openeo.rest.auth.config - INFO - set_refresh_token - Storing refresh token for issuer 'https://identity.dataspace.copernicus.eu/auth/realms/CDSE' (client 'sh-b1c3a958-52d4-40fe-a333-153595d1c71e')
+2024-06-24 12:51:47,268 - root - INFO - connect_to_openeo - Connected to openEO
+2024-06-24 12:51:47,269 - root - INFO - download_satellite_image - Current jobs:
+2024-06-24 12:51:47,677 - root - INFO - download_satellite_image - 0 j-2406105ee1c14c16b233239d4d21b965 finished
+2024-06-24 12:51:47,678 - root - INFO - download_satellite_image - 1 j-2406102b3c4a47b1ae42eea7c2a79987 finished
+2024-06-24 12:51:47,679 - root - INFO - download_satellite_image - 2 j-24061593d4a2443ab5c8facf203efe13 finished
+2024-06-24 12:51:47,679 - root - INFO - download_satellite_image - 3 j-240615fd2234409db7b39207956601c4 finished
+2024-06-24 12:51:47,679 - root - INFO - download_satellite_image - 4 j-24061572bb914b41b7031037bcffab1c finished
+2024-06-24 12:51:47,680 - root - INFO - download_satellite_image - 5 j-2406154113d34000826f37052798966b finished
+2024-06-24 12:51:47,680 - root - INFO - download_satellite_image - 6 j-24061595755343568506caaae00e4fd8 error
+2024-06-24 12:51:47,680 - root - INFO - download_satellite_image - 7 j-2406152527c14f1f8596fbd1629805f5 finished
+2024-06-24 12:51:47,680 - root - INFO - download_satellite_image - 8 j-2406159105044cb7bdcdf8dcafcbbddd finished
+2024-06-24 12:51:47,681 - root - INFO - download_satellite_image - 9 j-240615fbdefd47258aafe0c76e052433 finished
+2024-06-24 12:51:47,681 - root - INFO - download_satellite_image - 10 j-240615a2bc784ac39646fa59f0c2bc0b finished
+2024-06-24 12:51:47,681 - root - INFO - download_satellite_image - 11 j-240615ce7fb94ab2ac35bf62c7f619b1 finished
+2024-06-24 12:51:47,681 - root - INFO - download_satellite_image - 12 j-240615add9794758a346de52441a302e finished
+2024-06-24 12:51:47,681 - root - INFO - download_satellite_image - 13 j-240615ecf88d44f8b9be65904740d809 finished
+2024-06-24 12:51:47,682 - root - INFO - download_satellite_image - 14 j-24061555459b48bf8f10bd926fb14f24 finished
+2024-06-24 12:51:47,682 - root - INFO - download_satellite_image - 15 j-24062496a4b84bebbfa35c05df28850a finished
+2024-06-24 12:51:48,210 - root - INFO - create_and_start_openeo_job - Frankfurt: Created openEO job
+2024-06-24 12:52:04,843 - root - INFO - create_and_start_openeo_job - Frankfurt: Started openEO job with ID: j-2406240e564d4a0a8a5d0674b32a4c62
+2024-06-24 12:58:41,479 - root - INFO - connect_to_openeo - Already connected to openEO
+2024-06-24 12:58:41,713 - root - INFO - delete_jobs - Deleteing job 0, j-2406105ee1c14c16b233239d4d21b965, finished
+2024-06-24 12:58:45,254 - root - INFO - delete_jobs - Deleteing job 1, j-2406102b3c4a47b1ae42eea7c2a79987, finished
+2024-06-24 12:58:49,999 - root - INFO - delete_jobs - Deleteing job 2, j-2406154113d34000826f37052798966b, finished
+2024-06-24 12:58:54,828 - root - INFO - delete_jobs - Deleteing job 3, j-24061593d4a2443ab5c8facf203efe13, finished
+2024-06-24 12:59:00,344 - root - INFO - delete_jobs - Deleteing job 4, j-2406152527c14f1f8596fbd1629805f5, finished
+2024-06-24 12:59:05,387 - root - INFO - delete_jobs - Deleteing job 5, j-240615fd2234409db7b39207956601c4, finished
+2024-06-24 12:59:09,996 - root - INFO - delete_jobs - Deleteing job 6, j-24061572bb914b41b7031037bcffab1c, finished
+2024-06-24 12:59:16,242 - root - INFO - delete_jobs - Deleteing job 7, j-24061595755343568506caaae00e4fd8, error
+2024-06-24 12:59:20,971 - root - INFO - delete_jobs - Deleteing job 8, j-24061555459b48bf8f10bd926fb14f24, finished
+2024-06-24 12:59:25,918 - root - INFO - delete_jobs - Deleteing job 9, j-240615add9794758a346de52441a302e, finished
+2024-06-24 12:59:30,124 - root - INFO - delete_jobs - Deleteing job 10, j-2406159105044cb7bdcdf8dcafcbbddd, finished
+2024-06-24 12:59:36,118 - root - INFO - delete_jobs - Deleteing job 11, j-240615fbdefd47258aafe0c76e052433, finished
+2024-06-24 13:00:03,858 - root - INFO - delete_jobs - Deleteing job 12, j-240615a2bc784ac39646fa59f0c2bc0b, finished
+2024-06-24 13:00:08,856 - root - INFO - delete_jobs - Deleteing job 13, j-240615ce7fb94ab2ac35bf62c7f619b1, finished
+2024-06-24 13:00:12,662 - root - INFO - delete_jobs - Deleteing job 14, j-240615ecf88d44f8b9be65904740d809, finished
+2024-06-24 13:00:26,497 - root - INFO - delete_jobs - Deleteing job 15, j-24062496a4b84bebbfa35c05df28850a, finished
+2024-06-24 13:00:30,274 - root - INFO - delete_jobs - Deleteing job 16, j-2406240e564d4a0a8a5d0674b32a4c62, running
