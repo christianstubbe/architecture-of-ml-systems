@@ -23,6 +23,8 @@ from openeo.processes import ProcessBuilder, if_, is_nan
 import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.graph_objects as go
+from utils import stretch_hist
+
 
 
 
@@ -106,9 +108,7 @@ class DataHandler:
         
         # Ensure OSM data is available 
         if osm is None:
-            fp = pyr.get_data(city, directory=os.path.join("data", city))
-            osm = pyr.OSM(fp)
-            self.logger.info(f"{city}: Downloaded OSM data")
+            self.get_buildings(city=city)
 
         # Get the boundaries
         geoframe_bounds = osm.get_boundaries()
@@ -332,10 +332,6 @@ class DataHandler:
         Plot the data for a city either with matplotlib or plotly.
         """
 
-        # apply histogram stretching
-        def stretch_hist(band):
-            p2, p98 = np.percentile(band, (0.5, 99.5))
-            return np.clip((band - p2) * 255.0 / (p98 - p2), 0, 255).astype(np.uint8)
     
     
         if backend != "plotly" and backend != "matplotlib":            

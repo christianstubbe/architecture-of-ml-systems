@@ -1,5 +1,6 @@
 import logging
 from pyrosm.data import sources
+import numpy as np
 
 def setup_logger(level: int = logging.INFO):
     """
@@ -28,3 +29,10 @@ def get_available_cities():
     Return all available cities from pyrosm 
     """
     return sources.cities.available
+
+
+def stretch_hist(band):
+    """
+    Apply histogram stretching"""
+    p2, p98 = np.percentile(band, (0.5, 99.5))
+    return np.clip((band - p2) * 255.0 / (p98 - p2), 0, 255).astype(np.uint8)
