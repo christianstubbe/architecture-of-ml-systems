@@ -6,48 +6,37 @@ from utils import stretch_hist
 import matplotlib.pyplot as plt
 
 
-class DataPrepare:
-    def __init__(self, datahandler, logger, patch_size=128):
-        """
-        
-        """
-        self.logger = logger
-        self.patch_size = patch_size
-        self.dataHandler = datahandler
-    
 
-    def create_tensor_of_windows(self, city):
-        """
-        Create tensor with dimensions [N, H, W, C] from the satellite image of the city.
-        """
-        # Load image and Mask
-        image = self.dataHandler.get_satellite_image(city)
-        mask = self.dataHandler.get_building_mask(city)
+def create_tensor_of_windows(image, mask, patch_size=128):
+    """
+    Create tensor with dimensions [N, H, W, C+1] from the satellite image of the city.
+    image should be of shape (H, W, C)
+    mask should be of shape (H, W, 1)
+    """
+    # Merge Mask onto Image
+    image_with_mask = np.dstack((image, mask))
 
-        # Merge Mask onto Image
-        image_with_mask = np.dstack((image, mask))
-
-        # cut of edges so image shape is divisible by patch size
-        reduced_image = image_with_mask[:-(image_with_mask.shape[0]%self.patch_size), :-(image_with_mask.shape[1]%self.patch_size)]
+    # cut of edges so image shape is divisible by patch size
+    reduced_image = image_with_mask[:-(image_with_mask.shape[0]%patch_size), :-(image_with_mask.shape[1]%patch_size)]
 
 
-        # calculate number of patches
-        N = reduced_image.shape[0]//self.patch_size*reduced_image.shape[1]//self.patch_size
+    # calculate number of patches
+    N = reduced_image.shape[0]//patch_size*reduced_image.shape[1]//patch_size
 
-        # initialize target array
-        target_array = np.zeros((N, self.patch_size, self.patch_size, reduced_image.shape[-1]), dtype=np.uint16)
+    # initialize target array
+    target_array = np.zeros((N, patch_size, patch_size, reduced_image.shape[-1]), dtype=np.uint16)
 
-        # fill target array
-        for row in range(self.patch_size):
-            for col in range(self.patch_size):
-                # calculate row and column indices
-                row_filter = range(row,reduced_image.shape[0]+row,self.patch_size)
-                col_filter = range(col,reduced_image.shape[1]+col,self.patch_size)
+    # fill target array
+    for row in range(patch_size):
+        for col in range(patch_size):
+            # calculate row and column indices
+            row_filter = range(row,reduced_image.shape[0]+row,patch_size)
+            col_filter = range(col,reduced_image.shape[1]+col,patch_size)
 
-                # write values into target array
-                target_array[:, row, col, :] = reduced_image[row_filter][:,col_filter,:].reshape(-1, reduced_image.shape[-1])
+            # write values into target array
+            target_array[:, row, col, :] = reduced_image[row_filter][:,col_filter,:].reshape(-1, reduced_image.shape[-1])
 
-        return target_array
+    return target_array
 
 
    
@@ -79,9 +68,28 @@ def create_data_loaders(train_dataset, test_dataset, batch_size = 64):
     return train_loader, test_loader
 
 
-def get_data_loaders(data, train_ratio = 0.8, batch_size = 64):
-    train_ds, test_ds = divide_into_test_training(data,train_ratio=train_ratio)
+def apply_preprocessing_pipeline(images, masks, patch_size = 128, train_ratio = 0.8, batch_size = 64):
+    """
+    applies windowing, deviding into train and test and creating data loaders.
+    """
+
+    # for each city create patched images
+    patched_images = []
+    for image, mask in zip(images, masks):
+        patched_images.append(create_tensor_of_windows(image, mask, patch_size=patch_size))
+
+    # concatenate all patched images
+    patched_images_merged = np.concatenate(patched_images, axis=0)
+
+    # reorder axis to [N, C, H, W] for torch
+    patched_images_merged = np.transpose(patched_images_merged, (0,3,1,2))
+
+    # devide into train and test
+    train_ds, test_ds = divide_into_test_training(patched_images_merged,train_ratio=train_ratio)
+
+    # create data loaders
     train_loader, test_loader = create_data_loaders(train_ds, test_ds, batch_size=batch_size)
+
     return train_loader, test_loader
 
 def plot_sub_image( image_data):
