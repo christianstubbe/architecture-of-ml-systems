@@ -273,14 +273,18 @@ class DataHandler:
         self.logger.error(f"{city}: Job {job.job_id} did not finish in time")
         return False
 
-    def get_building_mask(self, city: str):  
+    def get_building_mask(self, city: str, all_touched: bool = False):  
         """
         Get the local building mask for buildings in a city.
         """
+        if all_touched:
+            filename = "building_mask_dense"
+        else:
+            filename = "building_mask_sparse"
         # Check if the building mask is already available
-        if os.path.exists(f"data/{city}/building_mask.tif"):
+        if os.path.exists(f"data/{city}/{filename}.tif"):
             self.logger.info(f"{city}: Using local building mask")
-            return rasterio.open(f"data/{city}/building_mask.tif").read(1)
+            return rasterio.open(f"data/{city}/{filename}.tif").read(1)
 
         # Create new building mask 
         satellite_image = self.get_satellite_image(city, return_rasterio_dataset=True)
@@ -295,8 +299,9 @@ class DataHandler:
         buildings = buildings.to_crs(crs)  # Ensure the CRS matches the GeoTIFF
 
         # Create a mask where pixels inside buildings are True, others are False
+        # TODO all_touched paramer nutzen für zweite Maske
         mask = geometry_mask(
-            buildings.geometry, transform=transform, invert=True, out_shape=out_shape
+            buildings.geometry, transform=transform, invert=True, out_shape=out_shape, all_touched=all_touched,
         )
 
         # Store the mask as a GeoTIFF file
@@ -313,7 +318,8 @@ class DataHandler:
         )
 
         # boolmask is automatically being saved as int16 [0,1]
-        with rasterio.open(f"data/{city}/building_mask.tif", "w", **out_meta) as dest:
+  
+        with rasterio.open(f"data/{city}/{filename}.tif", "w", **out_meta) as dest:
             dest.write(mask, indexes=1)
 
         return mask
