@@ -347,8 +347,8 @@ class DataHandler:
         mask = self.get_building_mask(city)
         # Take out slice if only a slice is to be plotted
         if slice_to_be_plotted is not None:
-            satellite_data = satellite_data[*slice_to_be_plotted]
-            mask = mask[*slice_to_be_plotted]
+            satellite_data = satellite_data[slice(*slice_to_be_plotted)]
+            mask = mask[slice(*slice_to_be_plotted)]
         
         if backend =="matplotlib":
             #load buildings
