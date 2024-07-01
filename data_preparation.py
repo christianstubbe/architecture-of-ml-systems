@@ -5,6 +5,7 @@ from torch.utils.data import random_split, DataLoader, Dataset
 from utils import stretch_hist
 import matplotlib.pyplot as plt
 from scipy.special import kl_div
+import pandas as pd
 
 
 def create_tensor_of_windows(image, mask, patch_size=128):
@@ -54,13 +55,13 @@ def divide_into_test_training(data, test_ratio=0.2, validation_ratio=0, seed=42)
     validation_size = int(validation_ratio * len(data))
 
     # Split the dataset with seed
-    generator = torch.Generator().manual_seed(seed=seed)
+    generator = torch.Generator().manual_seed(seed)
     train_dataset, test_dataset, validation_dataset = random_split(data, [train_size, test_size, validation_size], generator=generator)
 
     return train_dataset, test_dataset, validation_dataset
 
 
-def validate_test_training_validation_split(train_dataset, test_dataset, validation_dataset):
+def validate_test_training_validation_split(train_dataset, test_dataset, validation_dataset, city_names=None):
     """
     Validate the train to the test split and the train to the validation split.
     """
@@ -69,6 +70,24 @@ def validate_test_training_validation_split(train_dataset, test_dataset, validat
     
     kl_div_train_validation = kl_div(train_dataset, validation_dataset)
     print(kl_div_train_validation)
+
+    if city_names is not None:  
+        train_cities = train_dataset.dataset[:,-1,0,0][train_dataset.indices]
+        test_cities = test_dataset.dataset[:,-1,0,0][test_dataset.indices]
+        validation_cities = validation_dataset.dataset[:,-1,0,0][validation_dataset.indices]
+        train_city_counts = np.unique(train_cities, return_counts=True)
+        test_city_counts = np.unique(test_cities, return_counts=True)
+        validation_citiy_counts = np.unique(validation_cities, return_counts=True)
+
+        df = pd.DataFrame({
+            "train":pd.Series(train_city_counts[1]/train_cities.shape[0], index=train_city_counts[0], name='train'),
+            "test":pd.Series(test_city_counts[1]/test_cities.shape[0], index=test_city_counts[0], name='test'),
+            "validation":pd.Series(validation_citiy_counts[1]/validation_cities.shape[0], index=validation_citiy_counts[0], name='validation')})
+
+        df.index = city_names
+        print(df)
+
+
 
 
 def create_data_loaders(train_dataset, test_dataset, batch_size = 64):
@@ -81,15 +100,19 @@ def create_data_loaders(train_dataset, test_dataset, batch_size = 64):
     return train_loader, test_loader
 
 
-def apply_preprocessing_pipeline(images, masks, patch_size = 128, train_ratio = 0.8, batch_size = 64):
+def apply_preprocessing_pipeline(images, masks, patch_size = 128, test_ratio = 0.2,validation_ratio=0, batch_size = 64, cities=None):
     """
     applies windowing, deviding into train and test and creating data loaders.
     """
 
     # for each city create patched images
     patched_images = []
-    for image, mask in zip(images, masks):
-        patched_images.append(create_tensor_of_windows(image, mask, patch_size=patch_size))
+    for i,(image, mask ) in enumerate(zip(images, masks)):
+        patched_image = create_tensor_of_windows(image, mask, patch_size=patch_size)
+        city = np.ones(shape=list(patched_image.shape[:-1])+[1])*i
+        patched_image_with_city = np.concatenate([patched_image, city], axis=-1)
+        patched_images.append(patched_image_with_city)
+
 
     # concatenate all patched images
     patched_images_merged = np.concatenate(patched_images, axis=0)
@@ -98,12 +121,14 @@ def apply_preprocessing_pipeline(images, masks, patch_size = 128, train_ratio = 
     patched_images_merged = np.transpose(patched_images_merged, (0,3,1,2))
 
     # devide into train and test
-    train_ds, test_ds = divide_into_test_training(patched_images_merged,train_ratio=train_ratio)
+    train_ds, test_ds, val_ds = divide_into_test_training(patched_images_merged, test_ratio=test_ratio, validation_ratio=validation_ratio)
+
+    validate_test_training_validation_split(train_ds, test_ds, val_ds)
 
     # create data loaders
-    train_loader, test_loader = create_data_loaders(train_ds, test_ds, batch_size=batch_size)
+    train_loader, test_loader , validation_loader= create_data_loaders(train_ds, test_ds,val_ds, batch_size=batch_size)
 
-    return train_loader, test_loader
+    return train_loader, test_loader, validation_loader
 
 
 def plot_sub_image( image_data):
