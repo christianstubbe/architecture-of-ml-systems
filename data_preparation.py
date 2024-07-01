@@ -40,9 +40,9 @@ def create_tensor_of_windows(image, mask, patch_size=128):
 
 
    
-def divide_into_test_training(data, train_ratio=0.8):
+def divide_into_test_training(data, train_ratio=0.8, seed=42):
     """
-    Divide the data into test and training split.
+    Divide the data into test and training split with seed.
     """
     
     # Define the split ratio
@@ -52,8 +52,9 @@ def divide_into_test_training(data, train_ratio=0.8):
     train_size = int(train_ratio * len(data))
     test_size = len(data) - train_size
 
-    # Split the dataset
-    train_dataset, test_dataset = random_split(data, [train_size, test_size])
+    # Split the dataset with seed
+    generator = torch.Generator().manual_seed(seed=seed)
+    train_dataset, test_dataset = random_split(data, [train_size, test_size], generator=generator)
 
     return train_dataset, test_dataset
 
