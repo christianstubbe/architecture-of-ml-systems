@@ -7,3 +7,9 @@ numpy
 rasterio
 jupyter
 black
+lightning
+tensorboard
+torch
+torchvision
+torchaudio
+plotly
