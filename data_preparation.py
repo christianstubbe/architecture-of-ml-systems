@@ -4,7 +4,7 @@ import torch
 from torch.utils.data import random_split, DataLoader, Dataset
 from utils import stretch_hist
 import matplotlib.pyplot as plt
-
+from scipy.special import kl_div
 
 
 def create_tensor_of_windows(image, mask, patch_size=128):
@@ -18,7 +18,6 @@ def create_tensor_of_windows(image, mask, patch_size=128):
 
     # cut of edges so image shape is divisible by patch size
     reduced_image = image_with_mask[:-(image_with_mask.shape[0]%patch_size), :-(image_with_mask.shape[1]%patch_size)]
-
 
     # calculate number of patches
     N = reduced_image.shape[0]//patch_size*reduced_image.shape[1]//patch_size
@@ -38,25 +37,38 @@ def create_tensor_of_windows(image, mask, patch_size=128):
 
     return target_array
 
-
    
-def divide_into_test_training(data, train_ratio=0.8, seed=42):
+def divide_into_test_training(data, test_ratio=0.2, validation_ratio=0, seed=42):
     """
     Divide the data into test and training split with seed.
     """
     
-    # Define the split ratio
-    test_ratio = 1 - train_ratio
+    # Define the split rati
+    train_ratio = 1 - test_ratio - validation_ratio
+    if train_ratio < 0:
+        raise ValueError("The train ratio is negative. Please check the split ratios.")
 
     # Calculate the sizes for training and test sets
     train_size = int(train_ratio * len(data))
-    test_size = len(data) - train_size
+    test_size = int(test_ratio * len(data))
+    validation_size = int(validation_ratio * len(data))
 
     # Split the dataset with seed
     generator = torch.Generator().manual_seed(seed=seed)
-    train_dataset, test_dataset = random_split(data, [train_size, test_size], generator=generator)
+    train_dataset, test_dataset, validation_dataset = random_split(data, [train_size, test_size, validation_size], generator=generator)
 
-    return train_dataset, test_dataset
+    return train_dataset, test_dataset, validation_dataset
+
+
+def validate_test_training_validation_split(train_dataset, test_dataset, validation_dataset):
+    """
+    Validate the train to the test split and the train to the validation split.
+    """
+    kl_div_train_test = kl_div(train_dataset, test_dataset)
+    print(kl_div_train_test)
+    
+    kl_div_train_validation = kl_div(train_dataset, validation_dataset)
+    print(kl_div_train_validation)
 
 
 def create_data_loaders(train_dataset, test_dataset, batch_size = 64):
@@ -92,6 +104,7 @@ def apply_preprocessing_pipeline(images, masks, patch_size = 128, train_ratio = 
     train_loader, test_loader = create_data_loaders(train_ds, test_ds, batch_size=batch_size)
 
     return train_loader, test_loader
+
 
 def plot_sub_image( image_data):
     """
