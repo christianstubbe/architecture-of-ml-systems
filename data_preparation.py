@@ -6,7 +6,7 @@ from utils import stretch_hist
 import matplotlib.pyplot as plt
 from scipy.special import kl_div
 import pandas as pd
-
+import logging
 
 def create_tensor_of_windows(image, mask, patch_size=128):
     """
@@ -49,14 +49,14 @@ def divide_into_test_training(data, test_ratio=0.2, validation_ratio=0, seed=42)
     if train_ratio < 0:
         raise ValueError("The train ratio is negative. Please check the split ratios.")
 
-    # Calculate the sizes for training and test sets
-    train_size = int(train_ratio * len(data))
-    test_size = int(test_ratio * len(data))
-    validation_size = int(validation_ratio * len(data))
+    # # Calculate the sizes for training and test sets
+    # train_size = int(train_ratio * len(data))
+    # test_size = int(test_ratio * len(data))
+    # validation_size = int(validation_ratio * len(data))
 
     # Split the dataset with seed
     generator = torch.Generator().manual_seed(seed)
-    train_dataset, test_dataset, validation_dataset = random_split(data, [train_size, test_size, validation_size], generator=generator)
+    train_dataset, test_dataset, validation_dataset = random_split(data, [train_ratio, test_ratio, validation_ratio], generator=generator)
 
     return train_dataset, test_dataset, validation_dataset
 
@@ -65,42 +65,132 @@ def validate_test_training_validation_split(train_dataset, test_dataset, validat
     """
     Validate the train to the test split and the train to the validation split.
     """
-    kl_div_train_test = kl_div(train_dataset, test_dataset)
-    print(kl_div_train_test)
-    
-    kl_div_train_validation = kl_div(train_dataset, validation_dataset)
-    print(kl_div_train_validation)
+    logger = logging.getLogger()
+    # take out dataset for better readabiltiy
+    dataset = train_dataset.dataset[:,:-2]
 
+    # calculate mean, std, min and max for each image
+    means = dataset.mean(axis=(2,3))
+    stds = dataset.std(axis=(2,3))
+    mins = dataset.min(axis=(2,3))
+    maxs = dataset.max(axis=(2,3))
+
+    # create dataframes for train, test and validation set
+    train_means = pd.DataFrame({
+        "mean":means[train_dataset.indices].mean(axis=0), 
+        "std":stds[train_dataset.indices].mean(axis=0),
+        "min":mins[train_dataset.indices].mean(axis=0),
+        "max":maxs[train_dataset.indices].mean(axis=0),
+        }, index=["R", "G", "B","B08", "B12", "B11"])
+
+    test_means = pd.DataFrame({
+        "mean":means[test_dataset.indices].mean(axis=0), 
+        "std":stds[test_dataset.indices].mean(axis=0),
+        "min":mins[test_dataset.indices].mean(axis=0),
+        "max":maxs[test_dataset.indices].mean(axis=0),
+        }, index=["R", "G", "B","B08", "B12", "B11"])
+
+    # test if differences between train and test set are below 10%
+    if (((train_means-test_means)/train_means)<0.1).all().all():
+        print(u'\u2713',"Differences of train and test set is below 10% on mean, std, min and max across all input bands",)
+    else:
+        # if not show differences and give out Warning
+        temp_df =(train_means-test_means)/train_means
+        logger.warning("Differences of train and test set is above 10% on one of mean, std, min and max across all input bands. This might be too big of a difference between train and test set. Please choose another seed for splitting.")
+        print("!!!There might be large diffferecenes between train and test set. Please choose another seed for splitting. For more detail see the differences below",)
+        print(temp_df[temp_df>0.1].dropna(axis=1, how='all').dropna(axis=0, how='all'))
+        
+    if validation_dataset.indices:
+        validation_means = pd.DataFrame({
+            "mean":means[validation_dataset.indices].mean(axis=0), 
+            "std":stds[validation_dataset.indices].mean(axis=0),
+            "min":mins[validation_dataset.indices].mean(axis=0),
+            "max":maxs[validation_dataset.indices].mean(axis=0),
+            }, index=["R", "G", "B","B08", "B12", "B11"])
+        
+        # test if differences between train and validation set are below 10%
+        if (((train_means-validation_means)/train_means)<0.1).all().all():
+            print(u'\u2713',"Differences of train and validation set is below 10% on mean, std, min and max across all input bands",)
+        else:
+            # if not show differences and give out Warning
+            temp_df =(train_means-validation_means)/train_means
+            logger.warning("Differences of train and validation set is above 10% on one of mean, std, min and max across all input bands. This might be too big of a difference between train and test set. Please choose another seed for splitting.")
+            print("!!!There might be large diffferecenes between train and validation set. Please choose another seed for splitting. For more detail see the differences below",)
+            print(temp_df[temp_df>0.1].dropna(axis=1, how='all').dropna(axis=0, how='all'))
+
+    print()
+    # Look at distribution of masks
+    masks  = train_dataset.dataset[:,[-2]]
+
+    # sum the pixels of building up over each image
+    sum = masks.sum(axis=(2,3))
+
+    # create dataframes for train, test and validation set with descriptive statistics
+    train_means_labels = pd.DataFrame({
+        "mean":sum[train_dataset.indices].mean(axis=0), 
+        "median":np.median(sum[train_dataset.indices],axis=0), 
+        "std":sum[train_dataset.indices].std(axis=0),
+        "10th percentile":np.percentile(sum[train_dataset.indices], q=10,axis=0),
+        "90th percentile":np.percentile(sum[train_dataset.indices], q=90,axis=0),
+        }, index=["Train"])
+    test_means_labels = pd.DataFrame({
+        "mean":sum[test_dataset.indices].mean(axis=0),
+        "median":np.median(sum[test_dataset.indices],axis=0), 
+        "std":sum[test_dataset.indices].std(axis=0),
+        "10th percentile":np.percentile(sum[test_dataset.indices], q=10,axis=0),
+        "90th percentile":np.percentile(sum[test_dataset.indices], q=90,axis=0),
+        }, index=["Test"])
+    if validation_dataset.indices:
+        validation_means_labels = pd.DataFrame({
+            "mean":sum[validation_dataset.indices].mean(axis=0), 
+            "median":np.median(sum[validation_dataset.indices],axis=0), 
+            "std":sum[validation_dataset.indices].std(axis=0),
+            "10th percentile":np.percentile(sum[validation_dataset.indices], q=10,axis=0),
+            "90th percentile":np.percentile(sum[validation_dataset.indices], q=90,axis=0),
+            }, index=["Validation"])
+        # print concatenated dataframes
+        print("Comparison of distribution of masks:\n",pd.concat([train_means_labels, test_means_labels, validation_means_labels]))
+    else:
+        print("Comparison of distribution of masks:\n", pd.concat([train_means_labels, test_means_labels] ))
+
+    print()
+
+    # look at the distribution of the data according to the different cities
     if city_names is not None:  
+        # take out the city name for each label
         train_cities = train_dataset.dataset[:,-1,0,0][train_dataset.indices]
         test_cities = test_dataset.dataset[:,-1,0,0][test_dataset.indices]
         validation_cities = validation_dataset.dataset[:,-1,0,0][validation_dataset.indices]
+
+        # lookup how often each city occured in the different sets
         train_city_counts = np.unique(train_cities, return_counts=True)
         test_city_counts = np.unique(test_cities, return_counts=True)
         validation_citiy_counts = np.unique(validation_cities, return_counts=True)
 
+        # create dataframes for better readability
         df = pd.DataFrame({
-            "train":pd.Series(train_city_counts[1]/train_cities.shape[0], index=train_city_counts[0], name='train'),
-            "test":pd.Series(test_city_counts[1]/test_cities.shape[0], index=test_city_counts[0], name='test'),
-            "validation":pd.Series(validation_citiy_counts[1]/validation_cities.shape[0], index=validation_citiy_counts[0], name='validation')})
-
+            "Train":pd.Series(train_city_counts[1]/train_cities.shape[0], index=train_city_counts[0], name='train'),
+            "Test":pd.Series(test_city_counts[1]/test_cities.shape[0], index=test_city_counts[0], name='test'),
+            "Validation":pd.Series(validation_citiy_counts[1]/validation_cities.shape[0], index=validation_citiy_counts[0], name='validation')})
         df.index = city_names
-        print(df)
+        print("Comparison of cities the data in the differen sets originates from:\n",df.T)
 
 
 
 
-def create_data_loaders(train_dataset, test_dataset, batch_size = 64):
+def create_data_loaders(train_dataset, test_dataset, validation_dataset, batch_size = 64):
     """
     Create DataLoaders.
     """
     # Create DataLoaders
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
-    return train_loader, test_loader
+    validation_loader = DataLoader(validation_dataset, batch_size=batch_size, shuffle=False)
+
+    return train_loader, test_loader, validation_loader
 
 
-def apply_preprocessing_pipeline(images, masks, patch_size = 128, test_ratio = 0.2,validation_ratio=0, batch_size = 64, cities=None):
+def apply_preprocessing_pipeline(images, masks, patch_size = 128, test_ratio = 0.2,validation_ratio=0, batch_size = 64, show_validation_of_split=True, city_names=None):
     """
     applies windowing, deviding into train and test and creating data loaders.
     """
@@ -121,12 +211,20 @@ def apply_preprocessing_pipeline(images, masks, patch_size = 128, test_ratio = 0
     patched_images_merged = np.transpose(patched_images_merged, (0,3,1,2))
 
     # devide into train and test
-    train_ds, test_ds, val_ds = divide_into_test_training(patched_images_merged, test_ratio=test_ratio, validation_ratio=validation_ratio)
+    train_dataset, test_dataset, validation_dataset = divide_into_test_training(patched_images_merged, test_ratio=test_ratio, validation_ratio=validation_ratio)
 
-    validate_test_training_validation_split(train_ds, test_ds, val_ds)
+    if show_validation_of_split:
+        validate_test_training_validation_split(train_dataset, test_dataset, validation_dataset, city_names=city_names)
 
+    dataset = train_dataset.dataset[:,:-1]
+    train_dataset.dataset = dataset
+    test_dataset.dataset = dataset
+    validation_dataset.dataset = dataset    
     # create data loaders
-    train_loader, test_loader , validation_loader= create_data_loaders(train_ds, test_ds,val_ds, batch_size=batch_size)
+    train_loader, test_loader , validation_loader= create_data_loaders(train_dataset, test_dataset,validation_dataset, batch_size=batch_size)
+
+    # TODO fix error
+    # TODO remove city names
 
     return train_loader, test_loader, validation_loader
 
