@@ -273,7 +273,7 @@ class DataHandler:
         self.logger.error(f"{city}: Job {job.job_id} did not finish in time")
         return False
 
-    def get_building_mask(self, city: str, all_touched: bool = False):  
+    def get_building_mask(self, city: str, loaded_buildings = None, all_touched: bool = False):  
         """
         Get the local building mask for buildings in a city.
         """
@@ -295,15 +295,18 @@ class DataHandler:
         crs = satellite_image.crs
 
         # Read the GeoJSON file with building polygons
-        buildings = self.get_buildings(city)
-        buildings = buildings.to_crs(crs)  # Ensure the CRS matches the GeoTIFF
+        if loaded_buildings is not None:
+            buildings = loaded_buildings
+        else:
+            buildings = self.get_buildings(city)
+            buildings = buildings.to_crs(crs)  # Ensure the CRS matches the GeoTIFF
 
         # Create a mask where pixels inside buildings are True, others are False
         # TODO all_touched paramer nutzen für zweite Maske
         mask = geometry_mask(
             buildings.geometry, transform=transform, invert=True, out_shape=out_shape, all_touched=all_touched,
         )
-
+        
         # Store the mask as a GeoTIFF file
         
         out_meta = satellite_image.meta
@@ -323,6 +326,7 @@ class DataHandler:
             dest.write(mask, indexes=1)
 
         return mask
+
 
 
     def plot(self, city: str = "BerlinTest", 
