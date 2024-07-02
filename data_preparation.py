@@ -172,7 +172,8 @@ def validate_test_training_validation_split(train_dataset, test_dataset, validat
             "Train":pd.Series(train_city_counts[1]/train_cities.shape[0], index=train_city_counts[0], name='train'),
             "Test":pd.Series(test_city_counts[1]/test_cities.shape[0], index=test_city_counts[0], name='test'),
             "Validation":pd.Series(validation_citiy_counts[1]/validation_cities.shape[0], index=validation_citiy_counts[0], name='validation')})
-        df.index = city_names
+        print(df.index)
+        df.index = df.index.map({i:c for i ,c in enumerate(city_names)})
         print("Comparison of cities the data in the differen sets originates from:\n",df.T)
 
 
@@ -211,7 +212,7 @@ def apply_preprocessing_pipeline(images, masks, patch_size = 128, test_ratio = 0
     patched_images_merged = np.transpose(patched_images_merged, (0,3,1,2))
     
     # discard images with less than minimum_number_of_true_pixels_per_image
-    sums = patched_images_merged[:,-1].sum(axis=(1,2))
+    sums = patched_images_merged[:,-2].sum(axis=(1,2))
     patched_images_merged = patched_images_merged[sums>=minimum_number_of_true_pixels_per_image]
 
     # devide into train and test
