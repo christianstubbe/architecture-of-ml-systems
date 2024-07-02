@@ -190,7 +190,7 @@ def create_data_loaders(train_dataset, test_dataset, validation_dataset, batch_s
     return train_loader, test_loader, validation_loader
 
 
-def apply_preprocessing_pipeline(images, masks, patch_size = 128, test_ratio = 0.2,validation_ratio=0, batch_size = 64, show_validation_of_split=True, city_names=None):
+def apply_preprocessing_pipeline(images, masks, patch_size = 128, test_ratio = 0.2,validation_ratio=0, batch_size = 64, show_validation_of_split=True, city_names=None, minimum_number_of_true_pixels_per_image=0):
     """
     applies windowing, deviding into train and test and creating data loaders.
     """
@@ -209,6 +209,10 @@ def apply_preprocessing_pipeline(images, masks, patch_size = 128, test_ratio = 0
 
     # reorder axis to [N, C, H, W] for torch
     patched_images_merged = np.transpose(patched_images_merged, (0,3,1,2))
+    
+    # discard images with less than minimum_number_of_true_pixels_per_image
+    sums = patched_images_merged[:,-1].sum(axis=(1,2))
+    patched_images_merged = patched_images_merged[sums>=minimum_number_of_true_pixels_per_image]
 
     # devide into train and test
     train_dataset, test_dataset, validation_dataset = divide_into_test_training(patched_images_merged, test_ratio=test_ratio, validation_ratio=validation_ratio)
