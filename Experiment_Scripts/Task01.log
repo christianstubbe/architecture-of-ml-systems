@@ -153,3 +153,129 @@
 2024-07-04 11:15:34,337 - Task01 - INFO - Starting Job
 2024-07-04 11:15:50,511 - Task01 - INFO - Job ID: j-2407042e97c24a5ea8e39f0d041913a7
 2024-07-04 11:15:50,511 - Task01 - INFO - Awaiting Job
+2024-07-04 11:37:57,532 - Task01 - INFO - Processing London
+2024-07-04 11:37:57,541 - Task01 - INFO - {'bounds': array([-0.59997952, 51.28000259,  0.4199934 , 51.70000076]), 'buildings_path': 'data/London/buildings.geojson', 'bounds_path': 'data/London/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-07-04 11:37:57,542 - Task01 - INFO - get bands for London
+2024-07-04 11:37:57,542 - Task01 - INFO - data/London/bounds.pkl
+2024-07-04 11:37:57,542 - Task01 - INFO - city bounds {'west': np.float64(-0.5999795198440552), 'south': np.float64(51.28000259399414), 'east': np.float64(0.41999340057373047), 'north': np.float64(51.70000076293945)}
+2024-07-04 11:37:57,612 - Task01 - INFO - Mask
+2024-07-04 11:37:57,612 - Task01 - INFO - DataCube(<PGNode 'resample_cube_spatial' at 0x7f1a06041440>)
+2024-07-04 11:37:57,612 - Task01 - INFO - Datacube
+2024-07-04 11:37:57,612 - Task01 - INFO - DataCube(<ReduceNode 'reduce_dimension' at 0x7f1a06041580>)
+2024-07-04 11:37:57,612 - Task01 - INFO - Creating Job
+2024-07-04 11:37:58,403 - Task01 - INFO - Starting Job
+2024-07-04 11:38:15,625 - Task01 - INFO - Job ID: j-240704a293c44b8caea519e7237b00f8
+2024-07-04 11:38:15,625 - Task01 - INFO - Awaiting Job
+2024-07-04 11:46:55,361 - Task01 - INFO - Processing Montreal
+2024-07-04 11:46:55,362 - Task01 - INFO - {'bounds': array([-74.08990479,  45.30006409, -73.27013397,  45.74983978]), 'buildings_path': 'data/Montreal/buildings.geojson', 'bounds_path': 'data/Montreal/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-07-04 11:46:55,363 - Task01 - INFO - get bands for Montreal
+2024-07-04 11:46:55,363 - Task01 - INFO - data/Montreal/bounds.pkl
+2024-07-04 11:46:55,363 - Task01 - INFO - city bounds {'west': np.float64(-74.08990478515625), 'south': np.float64(45.30006408691406), 'east': np.float64(-73.27013397216797), 'north': np.float64(45.749839782714844)}
+2024-07-04 11:46:55,408 - Task01 - INFO - Mask
+2024-07-04 11:46:55,409 - Task01 - INFO - DataCube(<PGNode 'resample_cube_spatial' at 0x7f1a35173a10>)
+2024-07-04 11:46:55,409 - Task01 - INFO - Datacube
+2024-07-04 11:46:55,409 - Task01 - INFO - DataCube(<ReduceNode 'reduce_dimension' at 0x7f1a35173600>)
+2024-07-04 11:46:55,409 - Task01 - INFO - Creating Job
+2024-07-04 11:46:56,221 - Task01 - INFO - Starting Job
+2024-07-04 11:47:17,112 - Task01 - INFO - Job ID: j-2407040112bb4a53ab3f0578479ba338
+2024-07-04 11:47:17,112 - Task01 - INFO - Awaiting Job
+2024-07-04 11:54:18,739 - Task01 - INFO - Processing Paris
+2024-07-04 11:54:18,739 - Task01 - INFO - {'bounds': array([ 2.22412205, 48.81557465,  2.46976018, 48.90215683]), 'buildings_path': 'data/Paris/buildings.geojson', 'bounds_path': 'data/Paris/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-07-04 11:54:18,740 - Task01 - INFO - get bands for Paris
+2024-07-04 11:54:18,740 - Task01 - INFO - data/Paris/bounds.pkl
+2024-07-04 11:54:18,741 - Task01 - INFO - city bounds {'west': np.float64(2.2241220474243164), 'south': np.float64(48.815574645996094), 'east': np.float64(2.4697601795196533), 'north': np.float64(48.902156829833984)}
+2024-07-04 11:54:18,791 - Task01 - INFO - Mask
+2024-07-04 11:54:18,791 - Task01 - INFO - DataCube(<PGNode 'resample_cube_spatial' at 0x7f1a35173380>)
+2024-07-04 11:54:18,791 - Task01 - INFO - Datacube
+2024-07-04 11:54:18,791 - Task01 - INFO - DataCube(<ReduceNode 'reduce_dimension' at 0x7f1a351736a0>)
+2024-07-04 11:54:18,791 - Task01 - INFO - Creating Job
+2024-07-04 11:54:19,613 - Task01 - INFO - Starting Job
+2024-07-04 11:54:56,679 - Task01 - INFO - Job ID: j-24070422bd2e47c2aacef23fa90907d3
+2024-07-04 11:54:56,680 - Task01 - INFO - Awaiting Job
+2024-07-04 11:59:06,385 - Task01 - INFO - Processing Seoul
+2024-07-04 11:59:06,385 - Task01 - INFO - {'bounds': array([126.58013916,  37.35000992, 127.30995941,  37.71998215]), 'buildings_path': 'data/Seoul/buildings.geojson', 'bounds_path': 'data/Seoul/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-07-04 11:59:06,386 - Task01 - INFO - get bands for Seoul
+2024-07-04 11:59:06,387 - Task01 - INFO - data/Seoul/bounds.pkl
+2024-07-04 11:59:06,387 - Task01 - INFO - city bounds {'west': np.float64(126.58013916015625), 'south': np.float64(37.35000991821289), 'east': np.float64(127.3099594116211), 'north': np.float64(37.7199821472168)}
+2024-07-04 11:59:06,433 - Task01 - INFO - Mask
+2024-07-04 11:59:06,433 - Task01 - INFO - DataCube(<PGNode 'resample_cube_spatial' at 0x7f1a35171d00>)
+2024-07-04 11:59:06,433 - Task01 - INFO - Datacube
+2024-07-04 11:59:06,433 - Task01 - INFO - DataCube(<ReduceNode 'reduce_dimension' at 0x7f1a35173830>)
+2024-07-04 11:59:06,433 - Task01 - INFO - Creating Job
+2024-07-04 11:59:07,967 - Task01 - INFO - Starting Job
+2024-07-04 11:59:29,163 - Task01 - INFO - Job ID: j-240704b4c0174f3d8adb88e753f0f363
+2024-07-04 11:59:29,163 - Task01 - INFO - Awaiting Job
+2024-07-04 12:04:59,672 - Task01 - INFO - Processing Singapore
+2024-07-04 12:04:59,672 - Task01 - INFO - {'bounds': array([103.60249329,   1.28047013, 103.97086862,   1.47875106]), 'buildings_path': 'data/Singapore/buildings.geojson', 'bounds_path': 'data/Singapore/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-07-04 12:04:59,681 - Task01 - INFO - get bands for Singapore
+2024-07-04 12:04:59,682 - Task01 - INFO - data/Singapore/bounds.pkl
+2024-07-04 12:04:59,682 - Task01 - INFO - city bounds {'west': np.float64(103.60249328613281), 'south': np.float64(1.2804701328277588), 'east': np.float64(103.97086862417467), 'north': np.float64(1.4787510633468628)}
+2024-07-04 12:04:59,729 - Task01 - INFO - Mask
+2024-07-04 12:04:59,729 - Task01 - INFO - DataCube(<PGNode 'resample_cube_spatial' at 0x7f1a35171c60>)
+2024-07-04 12:04:59,729 - Task01 - INFO - Datacube
+2024-07-04 12:04:59,729 - Task01 - INFO - DataCube(<ReduceNode 'reduce_dimension' at 0x7f1a35173c90>)
+2024-07-04 12:04:59,729 - Task01 - INFO - Creating Job
+2024-07-04 12:05:00,731 - Task01 - INFO - Starting Job
+2024-07-04 12:05:16,921 - Task01 - INFO - Job ID: j-2407048dd5bc4f8eb79e57d2e22fd452
+2024-07-04 12:05:16,921 - Task01 - INFO - Awaiting Job
+2024-07-04 12:08:27,810 - Task01 - INFO - Processing Sydney
+2024-07-04 12:08:27,810 - Task01 - INFO - {'bounds': array([150.87641326, -34.05987167, 151.31747437, -33.68881007]), 'buildings_path': 'data/Sydney/buildings.geojson', 'bounds_path': 'data/Sydney/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-07-04 12:08:27,819 - Task01 - INFO - get bands for Sydney
+2024-07-04 12:08:27,819 - Task01 - INFO - data/Sydney/bounds.pkl
+2024-07-04 12:08:27,819 - Task01 - INFO - city bounds {'west': np.float64(150.8764132617787), 'south': np.float64(-34.059871673583984), 'east': np.float64(151.31747436523438), 'north': np.float64(-33.688810068040375)}
+2024-07-04 12:08:27,864 - Task01 - INFO - Mask
+2024-07-04 12:08:27,864 - Task01 - INFO - DataCube(<PGNode 'resample_cube_spatial' at 0x7f1a35173060>)
+2024-07-04 12:08:27,864 - Task01 - INFO - Datacube
+2024-07-04 12:08:27,864 - Task01 - INFO - DataCube(<ReduceNode 'reduce_dimension' at 0x7f1a35172f20>)
+2024-07-04 12:08:27,864 - Task01 - INFO - Creating Job
+2024-07-04 12:08:28,498 - Task01 - INFO - Starting Job
+2024-07-04 12:08:52,767 - Task01 - INFO - Job ID: j-240704f77a7f44219b726592c654aeb2
+2024-07-04 12:08:52,768 - Task01 - INFO - Awaiting Job
+2024-07-04 12:27:26,311 - Task01 - INFO - Processing BerlinTest
+2024-07-04 12:27:26,311 - Task01 - INFO - {'bounds': [13.294333, 52.454927, 13.500205, 52.574409], 'buildings_path': 'data/BerlinTest/buildings.geojson', 'bounds_path': 'data/BerlinTest/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-07-04 12:27:26,311 - Task01 - INFO - get bands for BerlinTest
+2024-07-04 12:27:26,311 - Task01 - INFO - data/BerlinTest/bounds.pkl
+2024-07-04 12:27:26,312 - Task01 - INFO - city bounds {'west': 13.294333, 'south': 52.454927, 'east': 13.500205, 'north': 52.574409}
+2024-07-04 12:27:26,360 - Task01 - INFO - Mask
+2024-07-04 12:27:26,360 - Task01 - INFO - DataCube(<PGNode 'resample_cube_spatial' at 0x7f1a35171300>)
+2024-07-04 12:27:26,360 - Task01 - INFO - Datacube
+2024-07-04 12:27:26,360 - Task01 - INFO - DataCube(<ReduceNode 'reduce_dimension' at 0x7f1a35173ab0>)
+2024-07-04 12:27:26,361 - Task01 - INFO - Creating Job
+2024-07-04 12:27:35,575 - Task01 - INFO - Starting Job
+2024-07-04 12:27:52,777 - Task01 - INFO - Job ID: j-2407041da3444a29bde030a471e8232f
+2024-07-04 12:27:52,777 - Task01 - INFO - Awaiting Job
+2024-07-04 12:33:00,193 - Task01 - INFO - All Jobs finished
+2024-07-04 12:33:00,193 - Task01 - INFO - All Data downloaded
+2024-07-04 12:33:00,193 - Task01 - INFO - Moving on to the next step
+2024-07-04 12:33:00,193 - Task01 - INFO - Image creation of the Berlin images from the Exercise Sheet.
+2024-07-04 12:33:18,884 - Task01 - INFO - Creating Building Masks for all cities
+2024-07-04 12:33:18,884 - Task01 - INFO - Processing Aachen
+2024-07-04 12:33:40,414 - Task01 - INFO - Mask Shape: (2238, 1802)
+2024-07-04 12:33:40,415 - Task01 - INFO - Processing Berlin
+2024-07-04 12:34:52,850 - Task01 - INFO - Mask Shape: (3851, 4649)
+2024-07-04 12:34:52,850 - Task01 - INFO - Processing CapeTown
+2024-07-04 12:35:11,556 - Task01 - INFO - Mask Shape: (3868, 4184)
+2024-07-04 12:35:11,556 - Task01 - INFO - Processing Hamburg
+2024-07-04 12:35:53,667 - Task01 - INFO - Mask Shape: (3888, 3998)
+2024-07-04 12:35:53,667 - Task01 - INFO - Processing Johannesburg
+2024-07-04 12:35:58,846 - Task01 - INFO - Mask Shape: (5602, 7542)
+2024-07-04 12:35:58,847 - Task01 - INFO - Processing London
+2024-07-04 12:38:01,643 - Task01 - INFO - Mask Shape: (4953, 7266)
+2024-07-04 12:38:01,644 - Task01 - INFO - Processing Montreal
+2024-07-04 12:38:55,035 - Task01 - INFO - Mask Shape: (5103, 6485)
+2024-07-04 12:38:55,036 - Task01 - INFO - Processing Paris
+2024-07-04 12:39:18,385 - Task01 - INFO - Mask Shape: (979, 1811)
+2024-07-04 12:39:18,386 - Task01 - INFO - Processing Seoul
+2024-07-04 12:39:46,211 - Task01 - INFO - Mask Shape: (4247, 6540)
+2024-07-04 12:39:46,211 - Task01 - INFO - Processing Singapore
+2024-07-04 12:40:00,321 - Task01 - INFO - Mask Shape: (2195, 4101)
+2024-07-04 12:40:00,322 - Task01 - INFO - Processing Sydney
+2024-07-04 12:40:17,580 - Task01 - INFO - Mask Shape: (4191, 4157)
+2024-07-04 12:40:30,049 - Task01 - INFO - [[False False False ... False False False]
+ [False False False ... False False False]
+ [False False False ... False False False]
+ ...
+ [False False False ... False False False]
+ [False False False ... False False False]
+ [False False False ... False False False]]
+2024-07-04 12:40:30,050 - Task01 - INFO - (1361, 1427)
