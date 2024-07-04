@@ -29,7 +29,7 @@ from utils import stretch_hist
 
 
 class DataHandler: 
-    def __init__(self, logger):
+    def __init__(self, logger, path_to_data_directory = "data"):
         """
         Initialize the DataHandler class and define openeo params.
         """
@@ -40,10 +40,12 @@ class DataHandler:
         self.openeo_spatial_resolution = 10
         self.openeo_connection = None
         self.openeo_collections = None
-        self.openeo_jobs = None
+        self.openeo_jobs = None#
+        self.path_to_data_directory = path_to_data_directory
         
-        if not os.path.exists("data"):
-            os.makedirs("data")
+        
+        if not os.path.exists(self.path_to_data_directory):
+            os.makedirs(self.path_to_data_directory)
             logger.info("Created data directory")
         else:
             logger.info("Data directory already exists")
@@ -53,7 +55,7 @@ class DataHandler:
         """
         Create a directory for each city.
         """
-        os.makedirs(f"data/{city}", exist_ok=True)
+        os.makedirs(os.path.join(self.path_to_data_directory, city), exist_ok=True)
         self.logger.info(f"{city}: Directory available")
 
 
@@ -64,14 +66,14 @@ class DataHandler:
         self.create_directory(city)
         
         # Check if local data for city is available
-        if "buildings.geojson" in os.listdir(f"data/{city}"):
+        if "buildings.geojson" in os.listdir(os.path.join(self.path_to_data_directory, city)):
             self.logger.info(f"{city}: Using local building data")
-            return gpd.read_file(f"data/{city}/buildings.geojson")
+            return gpd.read_file(os.path.join(self.path_to_data_directory, city,"buildings.geojson"))
 
         # Download data for city
-        fp = pyr.get_data(city, directory=os.path.join("data", city))
+        fp = pyr.get_data(city, directory=os.path.join(self.path_to_data_directory, city))
         osm = pyr.OSM(fp)
-        self.logger.info(f"{city}: Downloaded data to data/{city}")
+        self.logger.info(f"{city}: Downloaded data to {self.path_to_data_directory}/{city}")
 
         # Get bounding box for city
         boundingbox = self.get_boundingbox(city, osm)
@@ -83,9 +85,9 @@ class DataHandler:
         buildings_geodf = buildings_geodf.cx[boundingbox[0] : boundingbox[2], boundingbox[1] : boundingbox[3]]
 
         # Save the data of the city
-        buildings_path = f"data/{city}/buildings.geojson"
+        buildings_path = os.path.join(self.path_to_data_directory, city,"buildings.geojson")
         buildings_geodf.to_file(buildings_path, driver="GeoJSON")
-        self.logger.info(f"{city}: Stored data to data/{city}/buildings.geojson")
+        self.logger.info(f"{city}: Stored data to {buildings_path}")
 
         return buildings_geodf
 
@@ -100,7 +102,7 @@ class DataHandler:
             return [13.294333, 52.454927, 13.500205, 52.574409]
 
         # Check if local bounds are available
-        bounds_path = f"data/{city}/bounds.pkl"
+        bounds_path = os.path.join(self.path_to_data_directory, city,"bounds.pkl")
         if os.path.exists(bounds_path):
             with open(bounds_path, "rb") as f:
                 boundingbox = pickle.load(f)
@@ -123,7 +125,7 @@ class DataHandler:
         # Save total bounds to pickle file
         with open(bounds_path, "wb") as f:
             pickle.dump(boundingbox, f)
-        self.logger.info(f"{city}: Saved bounds to data/{city}/bounds.pkl")
+        self.logger.info(f"{city}: Saved bounds to {bounds_path}")
 
         return boundingbox
     
@@ -132,9 +134,9 @@ class DataHandler:
         """
         Get satellite images for a city. Use local data if available. Returns an Array with (H, W, C) shape
         """
-        if os.path.exists(f"data/{city}/openEO.tif"):
+        if os.path.exists(os.path.join(self.path_to_data_directory, city,"openEO.tif")):
             self.logger.info(f"{city}: Using local satellite image")
-            ds = rasterio.open(f"data/{city}/openEO.tif")
+            ds = rasterio.open(os.path.join(self.path_to_data_directory, city,"openEO.tif"))
             if return_rasterio_dataset:
                 return ds
             
@@ -187,8 +189,8 @@ class DataHandler:
 
         # Get job results and store in data/city
         job_results = self.openeo_connection.job(job.job_id).get_results()
-        job_results.download_files(f"data/{city}")
-        self.logger.info(f"{city}: Downloaded job results to data/{city}")
+        job_results.download_files(os.path.join(self.path_to_data_directory, city))
+        self.logger.info(f"{city}: Downloaded job results to {os.path.join(self.path_to_data_directory, city)}")
 
 
     def delete_jobs(self):
@@ -282,9 +284,9 @@ class DataHandler:
         else:
             filename = "building_mask_sparse"
         # Check if the building mask is already available
-        if os.path.exists(f"data/{city}/{filename}.tif"):
+        if os.path.exists(os.path.join(self.path_to_data_directory, city,f"{filename}.tif")):
             self.logger.info(f"{city}: Using local building mask")
-            return rasterio.open(f"data/{city}/{filename}.tif").read(1)
+            return rasterio.open(os.path.join(self.path_to_data_directory, city,f"{filename}.tif")).read(1)
 
         # Create new building mask 
         satellite_image = self.get_satellite_image(city, return_rasterio_dataset=True)
@@ -322,7 +324,7 @@ class DataHandler:
 
         # boolmask is automatically being saved as int16 [0,1]
   
-        with rasterio.open(f"data/{city}/{filename}.tif", "w", **out_meta) as dest:
+        with rasterio.open(os.path.join(self.path_to_data_directory, city,f"{filename}.tif"), "w", **out_meta) as dest:
             dest.write(mask, indexes=1)
 
         return mask
