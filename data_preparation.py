@@ -8,35 +8,38 @@ from scipy.special import kl_div
 import pandas as pd
 import logging
 
-def create_tensor_of_windows(image, mask, patch_size=128):
+def create_tensor_of_windows(image, mask, patch_size=None):
     """
     Create tensor with dimensions [N, H, W, C+1] from the satellite image of the city.
     image should be of shape (H, W, C)
     mask should be of shape (H, W, 1)
     """
+
     # Merge Mask onto Image
     image_with_mask = np.dstack((image, mask))
 
     # cut of edges so image shape is divisible by patch size
     reduced_image = image_with_mask[:-(image_with_mask.shape[0]%patch_size), :-(image_with_mask.shape[1]%patch_size)]
 
-    # calculate number of patches
-    N = reduced_image.shape[0]//patch_size*reduced_image.shape[1]//patch_size
+    # get reduced image size
+    orig_img_x_size = reduced_image.shape[0]
+    orig_img_y_size = reduced_image.shape[1]
 
-    # initialize target array
-    target_array = np.zeros((N, patch_size, patch_size, reduced_image.shape[-1]), dtype=np.uint16)
+    # get factors to which each dimension is reduced
+    down_scale_x = orig_img_x_size//patch_size
+    down_scale_y = orig_img_y_size//patch_size
 
-    # fill target array
-    for row in range(patch_size):
-        for col in range(patch_size):
-            # calculate row and column indices
-            row_filter = range(row,reduced_image.shape[0]+row,patch_size)
-            col_filter = range(col,reduced_image.shape[1]+col,patch_size)
+    # create array for pathched images
+    patched_images = np.zeros([down_scale_x*down_scale_y, patch_size, patch_size, reduced_image.shape[2]], dtype=np.uint16)
 
-            # write values into target array
-            target_array[:, row, col, :] = reduced_image[row_filter][:,col_filter,:].reshape(-1, reduced_image.shape[-1])
+    # fill array with patches
+    for i in range(down_scale_x):
+        for j in range(down_scale_y):
+            patched_images[i*down_scale_x+j::down_scale_x*down_scale_y] = reduced_image[patch_size*i:patch_size*(i+1), patch_size*j:patch_size*(j+1)]
 
-    return target_array
+    # return array
+    return patched_images
+
 
    
 def divide_into_test_training(data, test_ratio=0.2, validation_ratio=0, seed=42):
@@ -243,3 +246,37 @@ def plot_sub_image( image_data):
     ax[0].imshow(stretch_hist(image_data[:,:,:3]))
     ax[1].imshow(stretch_hist(image_data[:,:,-1]))
     return fig
+
+
+def reduce_loader(loader, patch_size=256):
+    """
+    Reduces the size of the images in the loader to patch_size x patch_size patches, also realigns the indices
+    loader should have dataset in form [N,C,H,W]
+    """
+    # extract images from loader
+    images_dataset = loader.dataset.dataset
+
+    # extract original image size
+    orig_img_x_size = images_dataset.shape[2]
+    orig_img_y_size = images_dataset.shape[3]
+
+    # calculate downscale factor
+    down_scale_x = orig_img_x_size//patch_size
+    down_scale_y = orig_img_y_size//patch_size
+    
+    # create empty arrays for new images and indices
+    len_original_indices = len(loader.dataset.indices)
+    indices = np.zeros([len_original_indices*down_scale_x*down_scale_y], dtype=np.int64)
+    new_images = np.zeros([images_dataset.shape[0]*down_scale_x*down_scale_y, images_dataset.shape[1], patch_size, patch_size], dtype=np.uint16)
+    
+    # fill new images and indices
+    for i in range(down_scale_x):
+        for j in range(down_scale_y):
+            new_images[i*down_scale_x+j::down_scale_x*down_scale_y] = images_dataset[:, :, patch_size*i:patch_size*(i+1), patch_size*j:patch_size*(j+1)]
+            indices[i*down_scale_x+j::down_scale_x*down_scale_y]=(np.array(loader.dataset.indices))*down_scale_x*down_scale_y+i*down_scale_x+j
+
+    # create new loader
+    new_loader = torch.utils.data.DataLoader(torch.utils.data.TensorDataset(torch.tensor(new_images)), batch_size=loader.batch_size, shuffle=False)
+    new_loader.dataset.indices = indices
+
+    return new_loader
