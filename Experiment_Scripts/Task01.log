@@ -1,17 +1,155 @@
-2024-06-13 22:59:53,014 - Task01 - INFO - Logging start
-2024-06-13 22:59:53,015 - Task01 - INFO - Storing available cities in pyrosm
-2024-06-13 22:59:53,015 - Task01 - INFO - Available cities stored in data/available_cities.json
-2024-06-13 22:59:53,015 - Task01 - INFO - Creating directories for each city
-2024-06-13 22:59:53,015 - Task01 - INFO - Creating Directory: data/Aachen
-2024-06-13 22:59:53,015 - Task01 - INFO - Creating Directory: data/Berlin
-2024-06-13 22:59:53,015 - Task01 - INFO - Creating Directory: data/CapeTown
-2024-06-13 22:59:53,015 - Task01 - INFO - Creating Directory: data/Hamburg
-2024-06-13 22:59:53,016 - Task01 - INFO - Creating Directory: data/Johannesburg
-2024-06-13 22:59:53,016 - Task01 - INFO - Creating Directory: data/London
-2024-06-13 22:59:53,016 - Task01 - INFO - Creating Directory: data/Montreal
-2024-06-13 22:59:53,016 - Task01 - INFO - Creating Directory: data/Paris
-2024-06-13 22:59:53,016 - Task01 - INFO - Creating Directory: data/Seoul
-2024-06-13 22:59:53,016 - Task01 - INFO - Creating Directory: data/Singapore
-2024-06-13 22:59:53,016 - Task01 - INFO - Creating Directory: data/Sydney
-2024-06-13 22:59:53,016 - Task01 - INFO - Directories created
-2024-06-13 22:59:57,546 - Task01 - INFO - Data for Aachen downloaded to data/Aachen
+2024-07-04 10:41:27,611 - Task01 - INFO - Logging start
+2024-07-04 10:41:27,611 - Task01 - INFO - Storing available cities in pyrosm
+2024-07-04 10:41:27,620 - Task01 - INFO - Available cities stored in data/available_cities.json
+2024-07-04 10:41:27,620 - Task01 - INFO - Creating directories for each city
+2024-07-04 10:41:27,620 - Task01 - INFO - Creating Directory: data/Aachen
+2024-07-04 10:41:27,621 - Task01 - INFO - Creating Directory: data/Berlin
+2024-07-04 10:41:27,621 - Task01 - INFO - Creating Directory: data/CapeTown
+2024-07-04 10:41:27,621 - Task01 - INFO - Creating Directory: data/Hamburg
+2024-07-04 10:41:27,621 - Task01 - INFO - Creating Directory: data/Johannesburg
+2024-07-04 10:41:27,621 - Task01 - INFO - Creating Directory: data/London
+2024-07-04 10:41:27,621 - Task01 - INFO - Creating Directory: data/Montreal
+2024-07-04 10:41:27,621 - Task01 - INFO - Creating Directory: data/Paris
+2024-07-04 10:41:27,621 - Task01 - INFO - Creating Directory: data/Seoul
+2024-07-04 10:41:27,621 - Task01 - INFO - Creating Directory: data/Singapore
+2024-07-04 10:41:27,621 - Task01 - INFO - Creating Directory: data/Sydney
+2024-07-04 10:41:27,621 - Task01 - INFO - Directories created
+2024-07-04 10:41:27,621 - Task01 - INFO - Data for Aachen downloaded to data/Aachen
+2024-07-04 10:41:27,621 - Task01 - INFO - Using local data for Aachen
+2024-07-04 10:41:27,622 - Task01 - INFO - Data for Berlin downloaded to data/Berlin
+2024-07-04 10:41:27,622 - Task01 - INFO - Using local data for Berlin
+2024-07-04 10:41:27,622 - Task01 - INFO - Data for CapeTown downloaded to data/CapeTown
+2024-07-04 10:41:27,622 - Task01 - INFO - Using local data for CapeTown
+2024-07-04 10:41:27,622 - Task01 - INFO - Data for Hamburg downloaded to data/Hamburg
+2024-07-04 10:41:27,622 - Task01 - INFO - Using local data for Hamburg
+2024-07-04 10:41:27,622 - Task01 - INFO - Data for Johannesburg downloaded to data/Johannesburg
+2024-07-04 10:41:27,622 - Task01 - INFO - Using local data for Johannesburg
+2024-07-04 10:41:27,622 - Task01 - INFO - Data for London downloaded to data/London
+2024-07-04 10:42:12,915 - Task01 - INFO - Bounding Box for London: [nan nan nan nan]
+2024-07-04 10:42:12,917 - Task01 - INFO - Bounding Box for London is None
+2024-07-04 10:42:12,919 - Task01 - INFO - Using total bounds: [-0.59997952 51.28000259  0.4199934  51.70000076]
+2024-07-04 10:42:46,599 - Task01 - INFO - Number of buildings in London before reducing to actual city: 1240646
+2024-07-04 10:42:47,232 - Task01 - INFO - Number of buildings in London: 1240643
+2024-07-04 10:43:32,648 - Task01 - INFO - Data for London saved to data/London/buildings.geojson
+2024-07-04 10:43:32,649 - Task01 - INFO - Bounds for London saved to data/London/bounds.pkl
+2024-07-04 10:43:39,506 - Task01 - INFO - Data for Montreal downloaded to data/Montreal
+2024-07-04 10:44:05,217 - Task01 - INFO - Bounding Box for Montreal: [nan nan nan nan]
+2024-07-04 10:44:05,219 - Task01 - INFO - Bounding Box for Montreal is None
+2024-07-04 10:44:05,220 - Task01 - INFO - Using total bounds: [-74.08990479  45.30006409 -73.27013397  45.74983978]
+2024-07-04 10:44:18,994 - Task01 - INFO - Number of buildings in Montreal before reducing to actual city: 563880
+2024-07-04 10:44:19,233 - Task01 - INFO - Number of buildings in Montreal: 563870
+2024-07-04 10:44:41,094 - Task01 - INFO - Data for Montreal saved to data/Montreal/buildings.geojson
+2024-07-04 10:44:41,094 - Task01 - INFO - Bounds for Montreal saved to data/Montreal/bounds.pkl
+2024-07-04 10:44:55,475 - Task01 - INFO - Data for Paris downloaded to data/Paris
+2024-07-04 10:46:09,697 - Task01 - INFO - Bounding Box for Paris: [ 2.22412205 48.81557465  2.46976018 48.90215683]
+2024-07-04 10:47:12,961 - Task01 - INFO - Number of buildings in Paris before reducing to actual city: 1900160
+2024-07-04 10:47:14,014 - Task01 - INFO - Number of buildings in Paris: 220740
+2024-07-04 10:47:26,358 - Task01 - INFO - Data for Paris saved to data/Paris/buildings.geojson
+2024-07-04 10:47:26,363 - Task01 - INFO - Bounds for Paris saved to data/Paris/bounds.pkl
+2024-07-04 10:47:40,442 - Task01 - INFO - Data for Seoul downloaded to data/Seoul
+2024-07-04 10:48:00,818 - Task01 - INFO - Bounding Box for Seoul: [nan nan nan nan]
+2024-07-04 10:48:00,820 - Task01 - INFO - Bounding Box for Seoul is None
+2024-07-04 10:48:00,822 - Task01 - INFO - Using total bounds: [126.58013916  37.35000992 127.30995941  37.71998215]
+2024-07-04 10:48:08,360 - Task01 - INFO - Number of buildings in Seoul before reducing to actual city: 297537
+2024-07-04 10:48:08,493 - Task01 - INFO - Number of buildings in Seoul: 297511
+2024-07-04 10:48:20,039 - Task01 - INFO - Data for Seoul saved to data/Seoul/buildings.geojson
+2024-07-04 10:48:20,040 - Task01 - INFO - Bounds for Seoul saved to data/Seoul/bounds.pkl
+2024-07-04 10:48:22,551 - Task01 - INFO - Data for Singapore downloaded to data/Singapore
+2024-07-04 10:48:33,660 - Task01 - INFO - Bounding Box for Singapore: [103.60249329   1.28047013 103.97086862   1.47875106]
+2024-07-04 10:48:37,225 - Task01 - INFO - Number of buildings in Singapore before reducing to actual city: 149628
+2024-07-04 10:48:37,314 - Task01 - INFO - Number of buildings in Singapore: 141120
+2024-07-04 10:48:43,789 - Task01 - INFO - Data for Singapore saved to data/Singapore/buildings.geojson
+2024-07-04 10:48:43,790 - Task01 - INFO - Bounds for Singapore saved to data/Singapore/bounds.pkl
+2024-07-04 10:48:46,763 - Task01 - INFO - Data for Sydney downloaded to data/Sydney
+2024-07-04 10:48:59,812 - Task01 - INFO - Bounding Box for Sydney: [150.87641326 -34.05987167 151.31747437 -33.68881007]
+2024-07-04 10:49:04,187 - Task01 - INFO - Number of buildings in Sydney before reducing to actual city: 189895
+2024-07-04 10:49:04,279 - Task01 - INFO - Number of buildings in Sydney: 171241
+2024-07-04 10:49:11,479 - Task01 - INFO - Data for Sydney saved to data/Sydney/buildings.geojson
+2024-07-04 10:49:11,479 - Task01 - INFO - Bounds for Sydney saved to data/Sydney/bounds.pkl
+2024-07-04 10:50:27,583 - Task01 - INFO - Number of buildings in BerlinTest: 113002
+2024-07-04 10:50:33,494 - Task01 - INFO - Test Data saved to data/BerlinTest/buildings.geojson
+2024-07-04 10:50:33,496 - Task01 - INFO - Bounds for Test Data saved to data/BerlinTest/bounds.pkl
+2024-07-04 10:50:34,967 - Task01 - INFO - Connecting to openEO backend...
+2024-07-04 10:50:36,257 - Task01 - INFO - CONNECTED
+2024-07-04 10:50:36,745 - Task01 - INFO - Current, failed and finished jobs:
+2024-07-04 10:50:36,745 - Task01 - INFO - 0 j-240613d4e34745a5bd159d7d17ef5b6b finished
+2024-07-04 10:50:36,745 - Task01 - INFO - 1 j-240613296c4b4e6a89d567e011ff9637 finished
+2024-07-04 10:50:36,746 - Task01 - INFO - 2 j-240613462ab84b1b8ba1b63f7e913c20 finished
+2024-07-04 10:50:36,746 - Task01 - INFO - 3 j-2406136fccb04e4c9df74d81d28a79a6 finished
+2024-07-04 10:50:36,746 - Task01 - INFO - 4 j-240613ff17564aa2bb5c812e0be9da7b finished
+2024-07-04 10:50:36,746 - Task01 - INFO - 5 j-240613257a804ed18666cf928e53288c finished
+2024-07-04 10:50:36,746 - Task01 - INFO - 6 j-24061353e5064c7d868843b519372fcb finished
+2024-07-04 10:50:36,746 - Task01 - INFO - 7 j-240613db505541ee81b709ea55f10668 finished
+2024-07-04 10:50:36,746 - Task01 - INFO - 8 j-24061325786740158b97510abe1d58bd finished
+2024-07-04 10:50:36,746 - Task01 - INFO - 9 j-24061372587d4cfab3cf74f361de3998 finished
+2024-07-04 10:50:36,746 - Task01 - INFO - 10 j-2406134c81554c77b684174afa94d4e9 finished
+2024-07-04 10:50:36,746 - Task01 - INFO - 11 j-240613abc60a4d9399b82ef63ac40ed5 finished
+2024-07-04 10:50:36,746 - Task01 - INFO - 12 j-2406242024e040bfbc124e4664093b5d finished
+2024-07-04 10:50:36,746 - Task01 - INFO - 13 j-2406307ffbef4efdb7e171956f704057 finished
+2024-07-04 10:50:36,746 - Task01 - INFO - Creating Processing Jobs
+2024-07-04 10:50:38,181 - Task01 - INFO - [{'created': '2024-06-13T17:54:30Z', 'id': 'j-2406134c81554c77b684174afa94d4e9', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T17:59:17Z'}, {'created': '2024-06-13T17:01:13Z', 'id': 'j-24061372587d4cfab3cf74f361de3998', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T17:10:13Z'}, {'created': '2024-06-13T17:11:13Z', 'id': 'j-240613257a804ed18666cf928e53288c', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T17:19:06Z'}, {'created': '2024-06-13T17:20:23Z', 'id': 'j-240613db505541ee81b709ea55f10668', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T17:26:11Z'}, {'created': '2024-06-13T17:26:57Z', 'id': 'j-24061353e5064c7d868843b519372fcb', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T17:33:06Z'}, {'created': '2024-06-13T16:23:46Z', 'id': 'j-240613296c4b4e6a89d567e011ff9637', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T16:30:12Z'}, {'created': '2024-06-13T15:55:22Z', 'id': 'j-240613d4e34745a5bd159d7d17ef5b6b', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T16:02:10Z'}, {'created': '2024-06-13T16:03:06Z', 'id': 'j-240613462ab84b1b8ba1b63f7e913c20', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T16:12:14Z'}, {'created': '2024-06-13T16:12:57Z', 'id': 'j-2406136fccb04e4c9df74d81d28a79a6', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T16:23:13Z'}, {'created': '2024-06-13T16:31:34Z', 'id': 'j-24061325786740158b97510abe1d58bd', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T17:00:13Z'}, {'created': '2024-06-13T17:39:33Z', 'id': 'j-240613abc60a4d9399b82ef63ac40ed5', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T17:53:10Z'}, {'created': '2024-06-13T17:33:55Z', 'id': 'j-240613ff17564aa2bb5c812e0be9da7b', 'progress': 100, 'status': 'finished', 'updated': '2024-06-13T17:39:08Z'}, {'created': '2024-06-24T14:35:36Z', 'id': 'j-2406242024e040bfbc124e4664093b5d', 'progress': 100, 'status': 'finished', 'updated': '2024-06-24T14:43:12Z'}, {'created': '2024-06-30T12:40:59Z', 'id': 'j-2406307ffbef4efdb7e171956f704057', 'progress': 100, 'status': 'finished', 'updated': '2024-06-30T12:49:09Z'}]
+2024-07-04 10:50:38,182 - Task01 - INFO - Processing Aachen
+2024-07-04 10:50:38,182 - Task01 - INFO - {'bounds': array([ 5.97486258, 50.66213608,  6.21810818, 50.8572464 ]), 'buildings_path': 'data/Aachen/buildings.geojson', 'bounds_path': 'data/Aachen/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-07-04 10:50:38,185 - Task01 - INFO - get bands for Aachen
+2024-07-04 10:50:38,185 - Task01 - INFO - data/Aachen/bounds.pkl
+2024-07-04 10:50:38,186 - Task01 - INFO - city bounds {'west': np.float64(5.974862575531006), 'south': np.float64(50.66213607788086), 'east': np.float64(6.218108177185059), 'north': np.float64(50.85724639892578)}
+2024-07-04 10:50:38,307 - Task01 - INFO - Mask
+2024-07-04 10:50:38,307 - Task01 - INFO - DataCube(<PGNode 'resample_cube_spatial' at 0x7f1a3419e570>)
+2024-07-04 10:50:38,308 - Task01 - INFO - Datacube
+2024-07-04 10:50:38,308 - Task01 - INFO - DataCube(<ReduceNode 'reduce_dimension' at 0x7f1a3419e480>)
+2024-07-04 10:50:38,353 - Task01 - INFO - Creating Job
+2024-07-04 10:50:40,224 - Task01 - INFO - Starting Job
+2024-07-04 10:51:05,195 - Task01 - INFO - Job ID: j-240704b4afdf4c648d205f97431e5027
+2024-07-04 10:51:05,196 - Task01 - INFO - Awaiting Job
+2024-07-04 10:55:51,304 - Task01 - INFO - Processing Berlin
+2024-07-04 10:55:51,304 - Task01 - INFO - {'bounds': array([13.08834457, 52.33824539, 13.76116085, 52.67551041]), 'buildings_path': 'data/Berlin/buildings.geojson', 'bounds_path': 'data/Berlin/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-07-04 10:55:51,304 - Task01 - INFO - get bands for Berlin
+2024-07-04 10:55:51,305 - Task01 - INFO - data/Berlin/bounds.pkl
+2024-07-04 10:55:51,305 - Task01 - INFO - city bounds {'west': np.float64(13.08834457397461), 'south': np.float64(52.3382453918457), 'east': np.float64(13.761160850524902), 'north': np.float64(52.67551040649414)}
+2024-07-04 10:55:51,350 - Task01 - INFO - Mask
+2024-07-04 10:55:51,351 - Task01 - INFO - DataCube(<PGNode 'resample_cube_spatial' at 0x7f1a35173ce0>)
+2024-07-04 10:55:51,351 - Task01 - INFO - Datacube
+2024-07-04 10:55:51,351 - Task01 - INFO - DataCube(<ReduceNode 'reduce_dimension' at 0x7f1a35173ba0>)
+2024-07-04 10:55:51,351 - Task01 - INFO - Creating Job
+2024-07-04 10:55:52,138 - Task01 - INFO - Starting Job
+2024-07-04 10:56:07,696 - Task01 - INFO - Job ID: j-24070425410544878f0fb18ecb7ae3e9
+2024-07-04 10:56:07,696 - Task01 - INFO - Awaiting Job
+2024-07-04 11:04:11,914 - Task01 - INFO - Processing CapeTown
+2024-07-04 11:04:11,923 - Task01 - INFO - {'bounds': array([ 18.30722046, -34.11995316,  18.7499733 , -33.78020096]), 'buildings_path': 'data/CapeTown/buildings.geojson', 'bounds_path': 'data/CapeTown/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-07-04 11:04:11,923 - Task01 - INFO - get bands for CapeTown
+2024-07-04 11:04:11,923 - Task01 - INFO - data/CapeTown/bounds.pkl
+2024-07-04 11:04:11,924 - Task01 - INFO - city bounds {'west': np.float64(18.307220458984375), 'south': np.float64(-34.11995315551758), 'east': np.float64(18.74997329711914), 'north': np.float64(-33.78020095825195)}
+2024-07-04 11:04:11,970 - Task01 - INFO - Mask
+2024-07-04 11:04:11,971 - Task01 - INFO - DataCube(<PGNode 'resample_cube_spatial' at 0x7f1a35170fe0>)
+2024-07-04 11:04:11,971 - Task01 - INFO - Datacube
+2024-07-04 11:04:11,971 - Task01 - INFO - DataCube(<ReduceNode 'reduce_dimension' at 0x7f1a35170e00>)
+2024-07-04 11:04:11,971 - Task01 - INFO - Creating Job
+2024-07-04 11:04:14,097 - Task01 - INFO - Starting Job
+2024-07-04 11:04:33,036 - Task01 - INFO - Job ID: j-240704b18bba47da8f7b9fcd0a559314
+2024-07-04 11:04:33,037 - Task01 - INFO - Awaiting Job
+2024-07-04 11:10:58,566 - Task01 - INFO - Processing Hamburg
+2024-07-04 11:10:58,566 - Task01 - INFO - {'bounds': array([ 9.73011589, 53.39511108, 10.32528019, 53.7394371 ]), 'buildings_path': 'data/Hamburg/buildings.geojson', 'bounds_path': 'data/Hamburg/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-07-04 11:10:58,566 - Task01 - INFO - get bands for Hamburg
+2024-07-04 11:10:58,566 - Task01 - INFO - data/Hamburg/bounds.pkl
+2024-07-04 11:10:58,567 - Task01 - INFO - city bounds {'west': np.float64(9.73011589050293), 'south': np.float64(53.395111083984375), 'east': np.float64(10.32528018951416), 'north': np.float64(53.739437103271484)}
+2024-07-04 11:10:58,615 - Task01 - INFO - Mask
+2024-07-04 11:10:58,615 - Task01 - INFO - DataCube(<PGNode 'resample_cube_spatial' at 0x7f1a35173e70>)
+2024-07-04 11:10:58,616 - Task01 - INFO - Datacube
+2024-07-04 11:10:58,616 - Task01 - INFO - DataCube(<ReduceNode 'reduce_dimension' at 0x7f1a35173f60>)
+2024-07-04 11:10:58,616 - Task01 - INFO - Creating Job
+2024-07-04 11:10:59,388 - Task01 - INFO - Starting Job
+2024-07-04 11:11:14,748 - Task01 - INFO - Job ID: j-2407042433b4421a959c7688e032029d
+2024-07-04 11:11:14,749 - Task01 - INFO - Awaiting Job
+2024-07-04 11:15:33,781 - Task01 - INFO - Processing Johannesburg
+2024-07-04 11:15:33,781 - Task01 - INFO - {'bounds': array([ 27.72006989, -26.39994431,  28.46972084, -25.90001488]), 'buildings_path': 'data/Johannesburg/buildings.geojson', 'bounds_path': 'data/Johannesburg/bounds.pkl', 'jobid': None, 'jobstatus': None}
+2024-07-04 11:15:33,790 - Task01 - INFO - get bands for Johannesburg
+2024-07-04 11:15:33,790 - Task01 - INFO - data/Johannesburg/bounds.pkl
+2024-07-04 11:15:33,791 - Task01 - INFO - city bounds {'west': np.float64(27.720069885253906), 'south': np.float64(-26.399944305419922), 'east': np.float64(28.4697208404541), 'north': np.float64(-25.900014877319336)}
+2024-07-04 11:15:33,837 - Task01 - INFO - Mask
+2024-07-04 11:15:33,837 - Task01 - INFO - DataCube(<PGNode 'resample_cube_spatial' at 0x7f1a35172bb0>)
+2024-07-04 11:15:33,837 - Task01 - INFO - Datacube
+2024-07-04 11:15:33,837 - Task01 - INFO - DataCube(<ReduceNode 'reduce_dimension' at 0x7f1a35172d90>)
+2024-07-04 11:15:33,837 - Task01 - INFO - Creating Job
+2024-07-04 11:15:34,337 - Task01 - INFO - Starting Job
+2024-07-04 11:15:50,511 - Task01 - INFO - Job ID: j-2407042e97c24a5ea8e39f0d041913a7
+2024-07-04 11:15:50,511 - Task01 - INFO - Awaiting Job
