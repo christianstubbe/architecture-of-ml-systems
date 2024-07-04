@@ -23,9 +23,8 @@ from openeo.processes import ProcessBuilder, if_, is_nan
 import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.graph_objects as go
-from utils import stretch_hist
-
-
+from utilities.utils import stretch_hist
+from utilities.data_processing import create_boundaries_mask
 
 
 class DataHandler: 
@@ -126,6 +125,12 @@ class DataHandler:
         with open(bounds_path, "wb") as f:
             pickle.dump(boundingbox, f)
         self.logger.info(f"{city}: Saved bounds to {bounds_path}")
+
+        # save boundaries to geojson file
+        geoframe_bounds.to_file(
+            os.path.join(self.path_to_data_directory, city,"boundaries.geojson"), driver="GeoJSON"
+        )
+        self.logger.info(f"{city}: Saved boundaries to {os.path.join(self.path_to_data_directory, city,'boundaries.geojson')}")
 
         return boundingbox
     
@@ -312,6 +317,8 @@ class DataHandler:
         mask = geometry_mask(
             buildings.geometry, transform=transform, invert=True, out_shape=out_shape, all_touched=all_touched,
         )
+
+
         
         # Store the mask as a GeoTIFF file
         
@@ -330,6 +337,24 @@ class DataHandler:
   
         with rasterio.open(os.path.join(self.path_to_data_directory, city,f"{filename}.tif"), "w", **out_meta) as dest:
             dest.write(mask, indexes=1)
+
+
+        # create the boundaries mask for the city
+        # shows what part of the image is covered with labels
+        # from utilities.data_processing import create_boundaries_mask
+        # check if boundaries mask is already available
+        if os.path.exists(os.path.join(self.path_to_data_directory, city,"boundaries_mask.tif")):
+            self.logger.info(f"{city}: Using local boundaries mask")
+        else:
+            self.logger.info(f"{city}: Creating boundaries mask")   
+            create_boundaries_mask(
+                os.path.join(self.path_to_data_directory, city),
+                crs,
+                satellite_image.meta,
+                transform,
+                out_shape,
+                out_file_name="boundaries_mask.tif"
+            )
 
         return mask
 
