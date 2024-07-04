@@ -10,7 +10,6 @@ def boundings_geojson(path: str):
     osm_pbf = [f for f in os.listdir(path) if f.endswith(".osm.pbf")][0]
     print(osm_pbf)
     osm = pyr.OSM(os.path.join(path, osm_pbf))
-
     geoframe_bounds = osm.get_boundaries()
 
     print(os.path.join(path, "boundaries.geojson"))
@@ -28,7 +27,6 @@ def create_boundaries_mask(path, crs, meta, transform, out_shape, out_file_name=
     boundaries = pyr.OSM(os.path.join(path, osm_pbf)).get_boundaries()
 
     bounds_poly = boundaries.to_crs(crs)
-
     mask = rasterio.features.geometry_mask(
         bounds_poly.geometry, 
         transform=transform, 
@@ -47,3 +45,4 @@ def create_boundaries_mask(path, crs, meta, transform, out_shape, out_file_name=
     )
     with rasterio.open(os.path.join(path, out_file_name), "w", **meta) as dest:
             dest.write(mask, indexes=1)
+
