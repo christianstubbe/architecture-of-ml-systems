@@ -241,8 +241,9 @@ def plot_sub_image( image_data):
     """
     Plot sub image.
     """
-    fig, ax = plt.subplots(1, 2, figsize=(10, 5))
-
+    fig, ax = plt.subplots(1, 2, figsize=(20, 20))
+    if np.argmin(image_data.shape)==0:
+        image_data = np.transpose(image_data, (1, 2, 0))
     ax[0].imshow(stretch_hist(image_data[:,:,:3]))
     ax[1].imshow(stretch_hist(image_data[:,:,-1]))
     return fig
