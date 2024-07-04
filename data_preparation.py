@@ -205,7 +205,7 @@ def apply_preprocessing_pipeline(images, masks, patch_size = 128, test_ratio = 0
         patched_image = create_tensor_of_windows(image, mask, patch_size=patch_size)
         city = np.ones(shape=list(patched_image.shape[:-1])+[1])*i
         patched_image_with_city = np.concatenate([patched_image, city], axis=-1)
-        patched_images.append(patched_image_with_city)
+        patched_images.append(patched_image_with_city.astype(np.int16))
 
 
     # concatenate all patched images
