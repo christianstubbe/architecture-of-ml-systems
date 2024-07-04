@@ -286,7 +286,11 @@ class DataHandler:
         # Check if the building mask is already available
         if os.path.exists(os.path.join(self.path_to_data_directory, city,f"{filename}.tif")):
             self.logger.info(f"{city}: Using local building mask")
-            return rasterio.open(os.path.join(self.path_to_data_directory, city,f"{filename}.tif")).read(1)
+            mask = rasterio.open(os.path.join(self.path_to_data_directory, city,f"{filename}.tif")).read(1)
+            if mask.sum()==0:
+                os.remove(os.path.join(self.path_to_data_directory, city,f"{filename}.tif"))
+                return self.get_building_mask(city, loaded_buildings, all_touched)
+            return mask
 
         # Create new building mask 
         satellite_image = self.get_satellite_image(city, return_rasterio_dataset=True)
@@ -338,7 +342,8 @@ class DataHandler:
              brightness: int = 5,
              image_directory: str = "img/",
              show_plot: bool = False,
-             slice_to_be_plotted = None
+             slice_to_be_plotted = None, 
+             mask = "sparse"
              ):
         """
         Plot the data for a city either with matplotlib or plotly.
@@ -350,11 +355,11 @@ class DataHandler:
             raise NotImplementedError("Only matplotlib and plotly is supported at the moment")
         
         satellite_data = self.get_satellite_image(city)        
-        mask = self.get_building_mask(city)
+        mask = self.get_building_mask(city, all_touched=mask == "dense")
         # Take out slice if only a slice is to be plotted
         if slice_to_be_plotted is not None:
-            satellite_data = satellite_data[slice(*slice_to_be_plotted)]
-            mask = mask[slice(*slice_to_be_plotted)]
+            satellite_data = satellite_data[slice_to_be_plotted[0], slice_to_be_plotted[1]]
+            mask = mask[slice_to_be_plotted[0], slice_to_be_plotted[1]]
         
         if backend =="matplotlib":
             #load buildings
