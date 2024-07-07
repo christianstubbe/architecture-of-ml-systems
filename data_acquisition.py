@@ -212,6 +212,17 @@ class DataHandler:
             self.logger.info(f"Deleting job {idx}, {job['id']}, {job['status']}")
             self.openeo_connection.job(job["id"]).delete_job()
 
+    def get_jobs(self):
+        """
+        Get all jobs on the openEO backend. 
+        """
+        self.connect_to_openeo()
+        self.openeo_jobs = self.openeo_connection.list_jobs()
+        self.logger.info("Current jobs:")
+        for idx, job in enumerate(self.openeo_jobs):
+            self.logger.info(f"{idx} {job['id']} {job['status']}")
+        return self.openeo_jobs
+
 
     def create_and_start_openeo_job(self, city: str, collection_id: str = "SENTINEL2_L2A"):
         """
