@@ -57,6 +57,12 @@ class DataHandler:
         os.makedirs(os.path.join(self.path_to_data_directory, city), exist_ok=True)
         self.logger.info(f"{city}: Directory available")
 
+    def get_OSM_data(self, city: str):
+        # Download data for city
+        fp = pyr.get_data(city, directory=os.path.join(self.path_to_data_directory, city))
+        osm = pyr.OSM(fp)
+        self.logger.info(f"{city}: Downloaded data to {self.path_to_data_directory}/{city}")
+        return osm
 
     def get_buildings(self, city: str):
         """
@@ -69,10 +75,8 @@ class DataHandler:
             self.logger.info(f"{city}: Using local building data")
             return gpd.read_file(os.path.join(self.path_to_data_directory, city,"buildings.geojson"))
 
-        # Download data for city
-        fp = pyr.get_data(city, directory=os.path.join(self.path_to_data_directory, city))
-        osm = pyr.OSM(fp)
-        self.logger.info(f"{city}: Downloaded data to {self.path_to_data_directory}/{city}")
+        # get osm object
+        osm = self.get_OSM_data(city)
 
         # Get bounding box for city
         boundingbox = self.get_boundingbox(city, osm)
@@ -264,7 +268,7 @@ class DataHandler:
         Returns when the job is finished or raises an exception if the job failed.
         """
 
-        for i in range(30):
+        for i in range(60):
             status = self.openeo_connection.job(job.job_id).status()
             self.logger.debug(f"{city}: Job {job.job_id} status: {status}")
           
@@ -356,6 +360,62 @@ class DataHandler:
                 out_file_name="boundaries_mask.tif"
             )
 
+        return mask
+    
+    # def boundings_geojson(path: str):
+    # # open the osm.pbf file inside the city directory
+    #     osm_pbf = [f for f in os.listdir(path) if f.endswith(".osm.pbf")][0]
+    #     print(osm_pbf)
+    #     osm = pyr.OSM(os.path.join(path, osm_pbf))
+
+    #     geoframe_bounds = osm.get_boundaries()
+
+    #     print(os.path.join(path, "boundaries.geojson"))
+    #     geoframe_bounds.to_file(
+    #         os.path.join(path, "boundaries.geojson"),
+    #         driver="GeoJSON"
+    # )
+
+    def get_boundaries_mask(self, city, out_file_name="boundaries_mask.tif"):
+        """
+        create a mask of where the boundaries of the city are, 
+        so patches where no building were downloaded but that are included in the satllite image can be excluded
+        """
+        if os.path.exists(os.path.join(self.path_to_data_directory, city,out_file_name)):
+            self.logger.info(f"{city}: Using local boundary mask")
+            mask = rasterio.open(os.path.join(self.path_to_data_directory, city,out_file_name)).read(1)
+            return mask
+
+        satellite_image = self.get_satellite_image(city, return_rasterio_dataset=True)
+        crs = satellite_image.crs
+        meta = satellite_image.meta
+        transform = satellite_image.transform
+        out_shape = (satellite_image.height, satellite_image.width)
+
+        # get osm object
+        osm = self.get_OSM_data(city)
+        boundaries = osm.get_boundaries()
+
+        bounds_poly = boundaries.to_crs(crs)
+
+        mask = rasterio.features.geometry_mask(
+            bounds_poly.geometry, 
+            transform=transform, 
+            invert=True, 
+            out_shape=out_shape, 
+            all_touched=True
+        )
+        meta.update(
+            {
+                "driver": "GTiff",
+                "height": mask.shape[0],
+                "width": mask.shape[1],
+                # "transform": transform,
+                "count": 1,
+            }
+        )
+        with rasterio.open(os.path.join(self.path_to_data_directory, city, out_file_name), "w", **meta) as dest:
+                dest.write(mask, indexes=1)
         return mask
 
 
@@ -607,6 +667,3 @@ class DataHandler:
         if show_plot:
             plt.show()
         plt.close()
-
-
-
