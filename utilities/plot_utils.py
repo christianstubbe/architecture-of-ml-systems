@@ -131,3 +131,6 @@ def plot_output(output: np.ndarray, save_path=None):
     plt.show()
     if save_path:
         plt.savefig(os.path.join(save_path, "output.png"))
+
+
+# def plot_false_color(data, bands=[])

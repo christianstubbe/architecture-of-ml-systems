@@ -452,6 +452,7 @@ class CityDataset(Dataset):
 
 
 if __name__ == "__main__":
+    print("Testing CityDataset")
     dataset = CityDataset(
         "/home/jlb/Projects/architecture-of-ml-systems/data/train", devrun=True
     )

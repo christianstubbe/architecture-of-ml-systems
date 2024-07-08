@@ -13,5 +13,11 @@ CITIES = [
     "Bogota",
     "Frankfurt",
     "Sydney",
-    "Muenchen"
+    "Muenchen",
 ]
+TEST_CITY = ["Berlin"]
+PATCH_SIZE = 32
+BATCH_SIZE = 32
+SPLIT = 0.1
+LOGLEVEL = "ERROR"
+MIN_LABELS=0.1
