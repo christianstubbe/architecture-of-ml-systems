@@ -14,11 +14,15 @@ class ConvNetSimple(nn.Module):
     def __init__(self, channels=6):
         super().__init__()
         self.model = nn.Sequential(
-                nn.Conv2d(channels, 32, kernel_size=3, padding=1), nn.ReLU(),
-                nn.Conv2d(32, 64, kernel_size=3, padding=1), nn.ReLU(),
-                nn.Conv2d(64, 128, kernel_size=3, padding=1), nn.ReLU(),
-                nn.Conv2d(128, 1, kernel_size=1, padding=0),
-                nn.Sigmoid())
-    
+            nn.Conv2d(channels, 32, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.Conv2d(32, 64, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.Conv2d(64, 128, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.Conv2d(128, 1, kernel_size=1, padding=0),
+            nn.Sigmoid(),
+        )
+
     def forward(self, x):
         return self.model(x)
