@@ -13,4 +13,5 @@ CITIES = [
     "Bogota",
     "Frankfurt",
     "Sydney",
+    "Muenchen"
 ]
