@@ -9,3 +9,5 @@ __pycache__/
 runs/
 # /JLB-Tests
 model_experiments/*
+
+*/__pycache__/*
