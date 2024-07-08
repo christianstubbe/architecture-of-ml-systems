@@ -2,12 +2,9 @@ data/
 data_new/
 .DS_STORE
 .venv
-
-
 *.log
 __pycache__/
 runs/
 # /JLB-Tests
 model_experiments/*
-
 */__pycache__/*
